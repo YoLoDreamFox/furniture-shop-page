@@ -1,0 +1,16 @@
+body,html {
+    --bg-color: #ffffff;
+    --text-color: rgb(51, 51, 51);
+
+    color-scheme: light;
+    font-family: 'Poppins', 'Montserrat', 'Century Gothic', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1em;
+    padding: 0;
+    margin: 0;
+}
+
+*{
+    box-sizing: border-box;
+}
