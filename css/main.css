@@ -43,6 +43,30 @@ body, html {
   font-style: normal;
   font-display: swap;
 }
-body > .test {
-  background: aqua;
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .browse_the_range .type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+main .products > * .all_products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+main .exemples .carousel > .all_carousel > .all_cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }

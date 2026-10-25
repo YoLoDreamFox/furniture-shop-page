@@ -1,5 +1,5 @@
-import {templateAssortmentType,templateProductCard} from './template.js';
-import {assortmentTypes,cards} from '../data/data.js';
+import {templateAssortmentType,templateProductCard,templateCarousel} from './template.js';
+import {assortmentTypes,cards,carouselCards} from '../data/data.js';
 
 
 
@@ -54,10 +54,18 @@ function renderProductCards() {
             const timeItem = new Date(card.date.year, card.date.month-1, card.date.day);
             complete.append(templateProductCard(card.name,card.description,price,card.src,card.alt,timeItem,old_price,discount,card.src_item));
         }
-    document.getElementById('productCards').replaceChildren(complete);
-    
+    document.getElementById('productCards').append(complete);   
+}
+
+function renderCarousel() {
+    const complete = document.createDocumentFragment();
+        // for (const test of carouselCards) {
+        // }
+    complete.append(templateCarousel(carouselCards));
+    document.getElementById('carousel').append(complete);
 }
 
 renderIcons();
 renderAssortmentTypes();
 renderProductCards();
+renderCarousel();

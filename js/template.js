@@ -1,5 +1,6 @@
 export function templateAssortmentType(src,alt_src,name) {
-    const card = document.createElement('card');
+    const card = document.createElement('div');
+    card.classList.add('card');
     card.innerHTML = `
         <div class="image">
             <img src="${src}" alt="${alt_src}"></img>
@@ -9,13 +10,13 @@ export function templateAssortmentType(src,alt_src,name) {
     return card;
 }
 
-
 async function copyTextToClipboard(text) {
     try {await navigator.clipboard.writeText(text)} catch (err) {};
 }
 
 export function templateProductCard(name,description,price,src,alt_src,timeItem,old_price,discount,src_item) {
-    const card = document.createElement('card');
+    const card = document.createElement('div');
+    card.classList.add('card');
 
     card.innerHTML=`
         <div class="standart">
@@ -74,3 +75,61 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
 
     return card;
 }
+
+function carouselCard(id,name,type,number,src,alt_src) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.id = id;
+    card.innerHTML = `
+        <div class="picture">
+            <img src="${src}" alt="${alt_src}"></img>
+        </div>
+        <div class="info_block">
+            <div>
+                <span>${number}</span>
+                <p>${type}</p>
+            </div>
+            <h3>${name}</h3>
+            <button class="arrow right" aria-label="right arrow">
+                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            </button>
+        </div>
+    `
+    return card;
+}
+
+export function templateCarousel(carouselCards) {
+    const carousel = document.createElement('div');
+    carousel.classList.add('all_carousel');
+    carousel.innerHTML = `
+        <div class="all_cards">
+        <!-- TODO template 4-->
+
+        </div>
+        <div class="carousel_indicators" role="group" aria-label="">
+            <button aria-label="Слайд 1 из 3" aria-current="true"></button>
+            <button aria-label="Слайд 2 из 3"></button>
+            <button aria-label="Слайд 3 из 3"></button>
+        </div>
+    `
+
+    const complete = document.createDocumentFragment();
+    for (const [index,card] of carouselCards.entries()) {
+        complete.append(carouselCard(card.id,card.name,card.type,index+1,card.src,card.alt));
+    }
+
+    const carouselIndicators = carousel.querySelector('.carousel_indicators');
+
+    carouselCards.forEach((item, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('dot');
+        dot.dataset.target = item.id;
+        dot.setAttribute('aria-label',`Слайд ${index+1} из ${carouselCards.length}`);
+        carouselIndicators.append(dot);
+    });
+
+
+    carousel.querySelector('.all_cards').replaceChildren(complete);
+    return carousel;
+}
+

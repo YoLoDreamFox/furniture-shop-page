@@ -2,6 +2,46 @@
 @use "./font.scss" as font;
 
 
-body>.test{
-    background: aqua;
+header{
+    display: flex;
+}
+
+main {
+
+
+    .browse_the_range{
+
+
+        .type{
+            display: flex;
+        }
+    }
+
+
+    .products{
+
+        >*{
+            .all_products{
+                display: flex;
+            }
+        }
+    }
+
+
+    .exemples{
+
+
+
+        .carousel{
+            >.all_carousel{
+                >.all_cards{
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+
+footer{
+    display: flex;
 }
