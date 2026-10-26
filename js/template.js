@@ -33,6 +33,9 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
             <button>
                 <p>Add to cart</p>
             </button>
+            <button>
+                <p>View details</p>
+            </button>
             <button class="share">
                 <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
                 <span>share</span>
@@ -81,7 +84,7 @@ function carouselCard(id,name,type,number,src,alt_src) {
     card.classList.add('card');
     card.id = id;
     card.innerHTML = `
-        <div class="picture">
+        <div class="image">
             <img src="${src}" alt="${alt_src}"></img>
         </div>
         <div class="info_block">
@@ -91,6 +94,7 @@ function carouselCard(id,name,type,number,src,alt_src) {
             </div>
             <h3>${name}</h3>
             <button class="arrow right" aria-label="right arrow">
+                right
                 <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
             </button>
         </div>

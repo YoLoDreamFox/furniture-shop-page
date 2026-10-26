@@ -2,46 +2,222 @@
 @use "./font.scss" as font;
 
 
-header{
-    display: flex;
-}
+body>header{
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px 6.25%; //TODO
+    gap: 15px; //TODO
 
-main {
-
-
-    .browse_the_range{
-
-
-        .type{
+    >.header_navigation{
+        >ul{
             display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            gap: 75px; //TODO
         }
     }
 
+    >.functional_buttons{
+        display: flex;
+        gap: 45px; //TODO
+    }
+}
 
-    .products{
+main {
+    gap: 50px; //TODO
+    >.ad_creative{
+        position: relative;
+        .image{
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
 
-        >*{
-            .all_products{
+        .card{
+            background: aqua;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 40px; //TODO
+            max-width: 50%;
+        }
+    }
+
+    >.browse_the_range{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 60px; //TODO
+
+        >*:last-child{
+            position: relative;
+            >.type{
+                justify-content: space-around;
                 display: flex;
+                gap: 20px; //TODO
+    
+                >.card{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    >.image{
+                        border-radius: 10px; //TODO
+                    }
+                }
+            }
+            >.scroll_buttons{
+                position: absolute;
+                top: 0;
             }
         }
     }
 
 
-    .exemples{
+    >.products{
+        display: flex;
+        flex-direction: column;
+        gap: 30px; //TODO
+        >*{
+            display: flex;
+            flex-direction: column;
+            gap: 30px; //TODO
+            .all_products{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 30px; //TODO
+
+                >.card{
+                    position: relative;
+
+                    >.standart{
+                        background: aqua;
+                    }
+
+                    >.hover{
+                        position: absolute;
+                        top: 0;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: opacity 0.4s ease, visibility 0.4s; //TODO
+                    }
+
+                    &:hover >.hover{
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+
+            >.show_more{
+                margin: auto;
+            }
+        }
+    }
 
 
+    >.exemples{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding: 40px 6.25%; //TODO
+        gap: 40px; //TODO
+        background: aqua;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+
+        >.info{
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            gap: 25px;
+        }
 
         .carousel{
             >.all_carousel{
+                position: relative;
                 >.all_cards{
                     display: flex;
+                    gap: 25px; //TODO
+
+                    >.card{
+                        position: relative;
+                        width: 100%;
+                        >.info_block{
+                            position: absolute;
+                            background: whitesmoke;
+                            padding: 30px; //TODO
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px; //TODO
+                            bottom: 20px; //TODO
+                            left: 20px; //TODO
+                            >*:first-child{
+                                display: flex;
+                                gap: 10px; //TODO
+                                span{
+                                    display: contents;
+                                    &::after{
+                                        content: "";
+                                        display: inline-block;
+                                        width: 25px;
+                                        height: 1px;
+                                        background-color: #000;
+                                        margin: auto;
+                                    }
+                                }
+                            }
+                            >button{
+                                position: absolute;
+                                bottom: 0;
+                                right: 0;
+                                transform: translate(100%,0);
+                            }
+                        }
+                    }
+
+
+                    >*:not(:first-child){
+                        width: 80%; //TODO
+                        align-self: flex-start;
+                    }
+                }
+                >.carousel_indicators{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
                 }
             }
         }
     }
+
+    >.share_your_setup{
+        text-align: center;
+    }
+
+    >*:last-child{
+        padding-bottom: 50px; //TODO
+    }
 }
 
-footer{
+footer{ 
     display: flex;
+    padding: 40px 6.25%; //TODO
+    box-shadow: 0 -10px 15px -10px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    >*:first-child{
+        display: flex;
+        padding: 0 0 30px 0; //TODO
+    }
+    >*:last-child{
+        border-top: 1px solid aqua;
+        padding: 30px 0 0 0; //TODO
+    }
 }
