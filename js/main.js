@@ -59,13 +59,72 @@ function renderProductCards() {
 
 function renderCarousel() {
     const complete = document.createDocumentFragment();
-        // for (const test of carouselCards) {
-        // }
     complete.append(templateCarousel(carouselCards));
     document.getElementById('carousel').append(complete);
+}
+
+function updateCarouselButtonsVisibility(currentIndex,cards) {
+    if (currentIndex === 0) {
+        document.getElementById('carouselScrollButtonLeft').classList.add('invisible');
+    } else {
+        document.getElementById('carouselScrollButtonLeft').classList.remove('invisible');
+    }
+
+    if (currentIndex === cards.length - 1) {
+        document.getElementById('carouselScrollButtonRight').classList.add('invisible');
+    } else {
+        document.getElementById('carouselScrollButtonRight').classList.remove('invisible');
+    }
+}
+
+function carouselLogic() {
+    const carouselTrack = document.getElementById('carouselTrack');
+    const cards = Array.from(document.querySelectorAll('.card_carousel'));
+    const dots = document.querySelectorAll('.dot');
+    let currentCardId = 0; 
+
+    function goToCard(cardIndex) {
+        if (cardIndex < 0 || cardIndex > cards.length-1) return;
+        const targetCard = cards[cardIndex];
+        const cardWidth = targetCard.clientWidth;
+        carouselTrack.style.transform = `translateX(-${cardIndex * (cardWidth + parseFloat(window.getComputedStyle(carouselTrack).gap || 0))}px)`;
+        currentCardId = cardIndex;
+        cards.forEach(card => {
+            if (card === targetCard) {
+                targetCard.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+        dots.forEach((dot,index) => {
+            if (index === cardIndex) {
+                dot.classList.add('active');
+                dot.setAttribute('aria-current', 'true');
+            } else {
+                dot.classList.remove('active');
+                dot.removeAttribute('aria-current');
+            }
+        });
+        updateCarouselButtonsVisibility(cardIndex,cards);
+    };
+
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', (event) => {
+            if (event.currentTarget.classList.contains('active')) return; 
+            goToCard(index);
+        })
+    });
+
+    document.getElementById('carouselScrollButtonRight').addEventListener('click', () => goToCard(currentCardId + 1));
+    document.getElementById('carouselScrollButtonLeft').addEventListener('click', () => goToCard(currentCardId - 1));
+
+    window.addEventListener('resize', () => goToCard(currentCardId));
+    updateCarouselButtonsVisibility(0,cards);
 }
 
 renderIcons();
 renderAssortmentTypes();
 renderProductCards();
 renderCarousel();
+carouselLogic();

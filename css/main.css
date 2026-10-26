@@ -121,6 +121,7 @@ main > .ad_creative .image {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  aspect-ratio: 2/1;
 }
 main > .ad_creative .card {
   background: aqua;
@@ -229,6 +230,7 @@ main > .exemples {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  overflow: hidden;
 }
 main > .exemples > .info {
   display: -webkit-box;
@@ -241,20 +243,40 @@ main > .exemples > .info {
   margin: auto;
   gap: 25px;
 }
-main > .exemples .carousel > .all_carousel {
+main > .exemples .carousel {
   position: relative;
 }
+main > .exemples .carousel > .scroll_buttons {
+  position: absolute;
+  z-index: 1;
+}
+main > .exemples .carousel > .all_carousel {
+  position: relative;
+  clip-path: inset(-1000px -1000px -1000px 0px);
+}
 main > .exemples .carousel > .all_carousel > .all_cards {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 25px;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel {
   position: relative;
-  width: 100%;
+  min-width: 70%;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block {
   position: absolute;
   background: whitesmoke;
   padding: 30px;
@@ -269,16 +291,16 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block {
   bottom: 20px;
   left: 20px;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block > *:first-child {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block > *:first-child span {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child span {
   display: contents;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block > *:first-child span::after {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child span::after {
   content: "";
   display: inline-block;
   width: 25px;
@@ -286,22 +308,23 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block > 
   background-color: #000;
   margin: auto;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card > .info_block > button {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > button {
   position: absolute;
   bottom: 0;
   right: 0;
   -webkit-transform: translate(100%, 0);
           transform: translate(100%, 0);
 }
-main > .exemples .carousel > .all_carousel > .all_cards > *:not(:first-child) {
-  width: 80%;
+main > .exemples .carousel > .all_carousel > .all_cards > *:not(.active) {
+  -webkit-transform: scale(0.7, 0.7);
+          transform: scale(0.7, 0.7);
   -ms-flex-item-align: start;
       align-self: flex-start;
 }
 main > .exemples .carousel > .all_carousel > .carousel_indicators {
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: calc(70% + 25px);
 }
 main > .share_your_setup {
   text-align: center;

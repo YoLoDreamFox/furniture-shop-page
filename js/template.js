@@ -81,7 +81,10 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
 
 function carouselCard(id,name,type,number,src,alt_src) {
     const card = document.createElement('div');
-    card.classList.add('card');
+    card.classList.add('card_carousel');
+    if (number === 1) {
+        card.classList.add('active');
+    }
     card.id = id;
     card.innerHTML = `
         <div class="image">
@@ -106,14 +109,11 @@ export function templateCarousel(carouselCards) {
     const carousel = document.createElement('div');
     carousel.classList.add('all_carousel');
     carousel.innerHTML = `
-        <div class="all_cards">
+        <div id="carouselTrack" class="all_cards">
         <!-- TODO template 4-->
 
         </div>
         <div class="carousel_indicators" role="group" aria-label="">
-            <button aria-label="Слайд 1 из 3" aria-current="true"></button>
-            <button aria-label="Слайд 2 из 3"></button>
-            <button aria-label="Слайд 3 из 3"></button>
         </div>
     `
 
@@ -127,8 +127,11 @@ export function templateCarousel(carouselCards) {
     carouselCards.forEach((item, index) => {
         const dot = document.createElement('button');
         dot.classList.add('dot');
-        dot.dataset.target = item.id;
         dot.setAttribute('aria-label',`Слайд ${index+1} из ${carouselCards.length}`);
+        if (index === 0) {
+            dot.classList.add('active');
+            dot.setAttribute('aria-current', 'true');
+        }
         carouselIndicators.append(dot);
     });
 

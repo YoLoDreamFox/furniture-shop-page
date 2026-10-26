@@ -35,6 +35,7 @@ main {
             right: 50%;
             margin-left: -50vw;
             margin-right: -50vw;
+            aspect-ratio: 2/1; //TODO
         }
 
         .card{
@@ -132,6 +133,7 @@ main {
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
+        overflow: hidden;
 
         >.info{
             display: flex;
@@ -141,15 +143,28 @@ main {
         }
 
         .carousel{
+            position: relative;
+
+            >.scroll_buttons{
+                position: absolute;
+                z-index: 1;
+            }
+
+
             >.all_carousel{
                 position: relative;
+                clip-path: inset(-1000px -1000px -1000px 0px); 
                 >.all_cards{
+                    transition: transform 0.5s ease-in-out;
                     display: flex;
                     gap: 25px; //TODO
 
-                    >.card{
+                    >.card_carousel{
                         position: relative;
-                        width: 100%;
+                        min-width: 70%;
+                        transform: scale(1,1);
+                        transform-origin: top left; 
+                        transition: transform 0.5s ease-in-out;
                         >.info_block{
                             position: absolute;
                             background: whitesmoke;
@@ -184,15 +199,16 @@ main {
                     }
 
 
-                    >*:not(:first-child){
-                        width: 80%; //TODO
+                    >*:not(.active){
+                        // min-width: 60%; //TODO
+                        transform: scale(0.7,0.7);
                         align-self: flex-start;
                     }
                 }
                 >.carousel_indicators{
                     position: absolute;
                     bottom: 0;
-                    right: 0;
+                    left: calc(70% + 25px) //TODO
                 }
             }
         }
