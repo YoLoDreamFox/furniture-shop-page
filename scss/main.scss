@@ -94,19 +94,22 @@ main {
                 justify-content: space-around;
                 display: flex;
                 gap: 20px; //TODO
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                position: relative;
+                overflow: scroll;
     
                 >.card{
                     display: flex;
                     flex-direction: column;
                     gap: 30px;
+                    width: 100%;
+                    min-width: 300px; //TODO
+                    max-width: 400px; //TODO
                     >.image{
                         border-radius: 10px; //TODO
                     }
                 }
-            }
-            >.scroll_buttons{
-                position: absolute;
-                top: 0;
             }
         }
     }
@@ -116,32 +119,111 @@ main {
         display: flex;
         flex-direction: column;
         gap: 30px; //TODO
+
+        >h2{
+            text-align: center;
+        }
         >*{
             display: flex;
             flex-direction: column;
             gap: 30px; //TODO
             .all_products{
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); //TODO
                 gap: 30px; //TODO
 
                 >.card{
                     position: relative;
+                    min-width: 300px; //TODO
 
                     >.standart{
                         background: var(--block-secondary-color);
 
+                        >.image{
+                            width: 100%;
+                            aspect-ratio: 1/1;
+                        }
+
                         >.info{
-                            padding: 15px;
+                            padding: 15px; //TODO
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px; //TODO
+                        }
+
+                        >.wildcard{
+                            >.old_price{
+                                position: absolute;
+                                bottom: 15px; //TODO
+                                right: 15px; //TODO
+                                height: 2em;
+                                align-content: center;
+                                text-decoration: line-through;
+                                color: var(--text-color-secondary);
+                                text-decoration-thickness: 2px;
+                            }
+
+                            >.banners{
+                                justify-content: space-between;
+                                color: var(--text-color-for-button);
+                                display: flex;
+                                flex-direction: row-reverse;
+                                position: absolute;
+                                width: 90%; //TODO
+                                top: 20px; //TODO
+                                left: 5%; //TODO
+
+                                >span{
+                                    margin: auto 0;
+                                    padding: 5px; //TODO
+                                    border-radius: 100%;
+                                    display: inline-flex;
+                                    aspect-ratio: 1/1;
+                                    align-items: center;
+
+                                    &.discount{
+                                        background: var(--discount-color);
+                                    }
+
+                                    &.new{
+                                        background: var(--new-color);
+                                    }
+                                }
+                            }
                         }
                     }
 
                     >.hover{
+                        gap: 20px; //TODO
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        background: var(--shadow-color);
                         position: absolute;
                         top: 0;
                         opacity: 0;
                         visibility: hidden;
                         transition: opacity 0.4s ease, visibility 0.4s; //TODO
+
+                        >button.secondary{
+                            color: var(--text-color-for-button);
+                        }
+
+                        >.secondary_buttons{
+                            --icon-size: 1em;
+                            display: flex;
+                            gap: 20px; //TODO
+
+                            >button{
+                                gap: 5px; //TODO
+                                display: flex;
+                                place-items: center;
+                                color: var(--text-color-for-button);
+                            }
+                        }
                     }
 
                     &:hover >.hover{
@@ -183,29 +265,6 @@ main {
         .carousel{
             position: relative;
 
-            >.scroll_buttons{
-                --icon-size: 1em;
-                >button{
-                    color: var(--primaty-color);
-                    position: absolute;
-                    z-index: 1;
-                    padding: 10px;
-                    border-radius: 50%;
-                    background: var(--bg-color);
-                    top: 50%;
-                    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5); //TODO
-
-                    &.left{
-                        left: 5px;
-                        transform: scaleX(-1) translateY(-50%);
-                    };
-
-                    &.right{
-                        right: 5px;
-                        transform: translateY(-50%);
-                    }
-                }
-            }
 
 
             >.all_carousel{
@@ -327,11 +386,93 @@ main {
 footer{ 
     display: flex;
     padding: 40px 6.25%; //TODO
-    box-shadow: 0 -10px 15px -10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -10px 15px -10px var(--shadow-color);
     flex-direction: column;
     >*:first-child{
         display: flex;
         padding: 0 0 30px 0; //TODO
+        gap: 20px; //TODO
+        justify-content: space-between;
+
+
+        >.info{
+            max-width: 300px;
+            gap: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        >.links{
+            gap: 50px;
+            display: flex;
+            flex-direction: column;
+            >nav{
+                >ul{
+                    display: flex;
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    flex-direction: column;
+                    gap: 40px;
+                }
+            }
+        }
+
+        >.help{
+            gap: 50px;
+            display: flex;
+            flex-direction: column;
+            >ul{
+                display: flex;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+
+        >.newsletter{
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            >form{
+                position: relative;
+                display: flex;
+                gap: 10px;
+
+                >label{
+                    position: absolute;
+                    pointer-events: none;
+                    left: 0;
+                    bottom: 0;
+                    transition: 0.2s ease all;
+                }
+
+                >input{
+                    width: 100%;
+                    max-width: 200px;
+                    padding: 0;
+                    border: none;
+                    border-bottom: 2px solid;
+                }
+
+                & >input:focus ~ label,
+                & >input:not(:placeholder-shown) ~ label{
+                    bottom: 100%;
+                }
+
+                >button{
+                    border: none;
+                    background: transparent;
+                    border-bottom: 2px solid;
+                    >p{
+                        color: var(--text-color);
+                        padding: 0;
+                    }
+                }
+            }
+        }
     }
     >*:last-child{
         border-top: 1px solid var(--block-secondary-color);

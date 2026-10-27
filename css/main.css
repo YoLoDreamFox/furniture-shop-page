@@ -6,7 +6,10 @@ body, html {
   --text-color-secondary: #666666;
   --text-color-for-button: #FFFFFF;
   --block-info-card: rgba(255, 255, 255, 0.7);
+  --shadow-color: rgba(0, 0, 0, 0.5);
   --block-secondary-color: #e1e4e9;
+  --discount-color: #E97171;
+  --new-color: #2EC1AC;
   --icon-size: 2em;
   color-scheme: light;
   font-family: "Poppins", "Montserrat", "Century Gothic", sans-serif;
@@ -45,6 +48,12 @@ body header, body main {
 img {
   width: 100%;
   height: 100%;
+}
+
+input {
+  font-size: 1em;
+  font-family: "Poppins", "Montserrat", "Century Gothic", sans-serif;
+  font-weight: 400;
 }
 
 h1, h2, h3, p, a, span {
@@ -109,6 +118,31 @@ button.secondary {
 button.secondary p {
   color: inherit;
   font-weight: 700;
+}
+
+div.scroll_buttons {
+  --icon-size: 1em;
+}
+div.scroll_buttons > button {
+  color: var(--primaty-color);
+  position: absolute;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  top: 50%;
+  -webkit-box-shadow: 0 0 12px 1px var(--shadow-color);
+          box-shadow: 0 0 12px 1px var(--shadow-color);
+}
+div.scroll_buttons > button.left {
+  left: 5px;
+  -webkit-transform: scaleX(-1) translateY(-50%);
+          transform: scaleX(-1) translateY(-50%);
+}
+div.scroll_buttons > button.right {
+  right: 5px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 button.icon {
@@ -282,6 +316,11 @@ main > .browse_the_range > *:last-child > .type {
   display: -ms-flexbox;
   display: flex;
   gap: 20px;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  position: relative;
+  overflow: scroll;
 }
 main > .browse_the_range > *:last-child > .type > .card {
   display: -webkit-box;
@@ -292,13 +331,12 @@ main > .browse_the_range > *:last-child > .type > .card {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 30px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 400px;
 }
 main > .browse_the_range > *:last-child > .type > .card > .image {
   border-radius: 10px;
-}
-main > .browse_the_range > *:last-child > .scroll_buttons {
-  position: absolute;
-  top: 0;
 }
 main > .products {
   display: -webkit-box;
@@ -309,6 +347,9 @@ main > .products {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 30px;
+}
+main > .products > h2 {
+  text-align: center;
 }
 main > .products > * {
   display: -webkit-box;
@@ -322,25 +363,119 @@ main > .products > * {
 }
 main > .products > * .all_products {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
 }
 main > .products > * .all_products > .card {
   position: relative;
+  min-width: 300px;
 }
 main > .products > * .all_products > .card > .standart {
   background: var(--block-secondary-color);
 }
+main > .products > * .all_products > .card > .standart > .image {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
 main > .products > * .all_products > .card > .standart > .info {
   padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+main > .products > * .all_products > .card > .standart > .wildcard > .old_price {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  height: 2em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-decoration: line-through;
+  color: var(--text-color-secondary);
+  text-decoration-thickness: 2px;
+}
+main > .products > * .all_products > .card > .standart > .wildcard > .banners {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: var(--text-color-for-button);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  position: absolute;
+  width: 90%;
+  top: 20px;
+  left: 5%;
+}
+main > .products > * .all_products > .card > .standart > .wildcard > .banners > span {
+  margin: auto 0;
+  padding: 5px;
+  border-radius: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  aspect-ratio: 1/1;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+main > .products > * .all_products > .card > .standart > .wildcard > .banners > span.discount {
+  background: var(--discount-color);
+}
+main > .products > * .all_products > .card > .standart > .wildcard > .banners > span.new {
+  background: var(--new-color);
 }
 main > .products > * .all_products > .card > .hover {
+  gap: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: var(--shadow-color);
   position: absolute;
   top: 0;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.4s ease, visibility 0.4s;
   transition: opacity 0.4s ease, visibility 0.4s;
+}
+main > .products > * .all_products > .card > .hover > button.secondary {
+  color: var(--text-color-for-button);
+}
+main > .products > * .all_products > .card > .hover > .secondary_buttons {
+  --icon-size: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+}
+main > .products > * .all_products > .card > .hover > .secondary_buttons > button {
+  gap: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  place-items: center;
+  color: var(--text-color-for-button);
 }
 main > .products > * .all_products > .card:hover > .hover {
   opacity: 1;
@@ -381,30 +516,6 @@ main > .exemples > .info {
 }
 main > .exemples .carousel {
   position: relative;
-}
-main > .exemples .carousel > .scroll_buttons {
-  --icon-size: 1em;
-}
-main > .exemples .carousel > .scroll_buttons > button {
-  color: var(--primaty-color);
-  position: absolute;
-  z-index: 1;
-  padding: 10px;
-  border-radius: 50%;
-  background: var(--bg-color);
-  top: 50%;
-  -webkit-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5);
-}
-main > .exemples .carousel > .scroll_buttons > button.left {
-  left: 5px;
-  -webkit-transform: scaleX(-1) translateY(-50%);
-          transform: scaleX(-1) translateY(-50%);
-}
-main > .exemples .carousel > .scroll_buttons > button.right {
-  right: 5px;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
 }
 main > .exemples .carousel > .all_carousel {
   position: relative;
@@ -547,8 +658,8 @@ footer {
   display: -ms-flexbox;
   display: flex;
   padding: 40px 6.25%;
-  -webkit-box-shadow: 0 -10px 15px -10px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 -10px 15px -10px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 -10px 15px -10px var(--shadow-color);
+          box-shadow: 0 -10px 15px -10px var(--shadow-color);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -559,6 +670,117 @@ footer > *:first-child {
   display: -ms-flexbox;
   display: flex;
   padding: 0 0 30px 0;
+  gap: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+footer > *:first-child > .info {
+  max-width: 300px;
+  gap: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+footer > *:first-child > .links {
+  gap: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+footer > *:first-child > .links > nav > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 40px;
+}
+footer > *:first-child > .help {
+  gap: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+footer > *:first-child > .help > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 40px;
+}
+footer > *:first-child > .newsletter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 50px;
+}
+footer > *:first-child > .newsletter > form {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+footer > *:first-child > .newsletter > form > label {
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  bottom: 0;
+  -webkit-transition: 0.2s ease all;
+  transition: 0.2s ease all;
+}
+footer > *:first-child > .newsletter > form > input {
+  width: 100%;
+  max-width: 200px;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid;
+}
+footer > *:first-child > .newsletter > form > input:not(:-moz-placeholder) ~ label {
+  bottom: 100%;
+}
+footer > *:first-child > .newsletter > form > input:not(:-ms-input-placeholder) ~ label {
+  bottom: 100%;
+}
+footer > *:first-child > .newsletter > form > input:focus ~ label, footer > *:first-child > .newsletter > form > input:not(:placeholder-shown) ~ label {
+  bottom: 100%;
+}
+footer > *:first-child > .newsletter > form > button {
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid;
+}
+footer > *:first-child > .newsletter > form > button > p {
+  color: var(--text-color);
+  padding: 0;
 }
 footer > *:last-child {
   border-top: 1px solid var(--block-secondary-color);

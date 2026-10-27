@@ -123,8 +123,73 @@ function carouselLogic() {
     updateCarouselButtonsVisibility(0,cards);
 }
 
+
+function scrollButtonCreate(allCards) {
+    const scrollButtonRight = document.getElementById('scrollButtonRight');
+    const scrollButtonLeft = document.getElementById('scrollButtonLeft');
+    let isScrolling = false;
+    
+    scrollButtonRight.addEventListener('click', () => {
+        allCards.scrollBy({
+            left: allCards.querySelector('.card').offsetWidth,
+            behavior: 'smooth'
+        })
+    });
+
+    scrollButtonLeft.addEventListener('click', () => {
+        allCards.scrollBy({
+            left: -allCards.querySelector('.card').offsetWidth,
+            behavior: 'smooth'
+        })
+    });
+
+    allCards.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                scrollButton(allCards);
+                isScrolling = false;
+            });
+            isScrolling = true;
+        };
+    });
+
+}
+
+function scrollButton(allCards) {
+    const scrollButtonRight = document.getElementById('scrollButtonRight');
+    const scrollButtonLeft = document.getElementById('scrollButtonLeft');
+    if (allCards.clientWidth < allCards.scrollWidth) {
+        scrollButtonRight.classList.remove('invisible');
+        scrollButtonLeft.classList.remove('invisible');
+    } else {
+        scrollButtonRight.classList.add('invisible');
+        scrollButtonLeft.classList.add('invisible');
+    }
+    if (allCards.scrollLeft <= 0) {
+        scrollButtonLeft.classList.add('invisible');
+    }
+    if (Math.ceil(allCards.scrollLeft) >= allCards.scrollWidth - allCards.clientWidth){
+        scrollButtonRight.classList.add('invisible');
+    }
+    
+}
+
+function scrollForAllCards() {
+    const allCards = document.getElementById('assortmentTypes');
+    scrollButtonCreate(allCards);
+    
+    const resizeObserver = new ResizeObserver(() => {
+            scrollButton(allCards);
+    });
+    resizeObserver.observe(allCards);
+    for (const card of allCards.querySelectorAll('.card')){
+        resizeObserver.observe(card);
+    }
+}
+
 renderIcons();
 renderAssortmentTypes();
 renderProductCards();
 renderCarousel();
 carouselLogic();
+scrollForAllCards();

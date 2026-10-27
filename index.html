@@ -72,10 +72,10 @@
     
                 </div>
                 <div class="scroll_buttons">
-                    <button class="arrow left icon" aria-label="left arrow">
+                    <button id="scrollButtonLeft" class="arrow left icon" aria-label="left arrow">
                         <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
                     </button>
-                    <button class="arrow right icon" aria-label="right arrow">
+                    <button id="scrollButtonRight" class="arrow right icon" aria-label="right arrow">
                         <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
                     </button>
                 </div>
@@ -145,16 +145,16 @@
             <div class="help">
                 <p>Help</p>
                 <ul>
-                    <li>Payment Options</li>
-                    <li>Returns</li>
-                    <li>Privacy Policies</li>
+                    <li><a href="/">Payment Options</a></li>
+                    <li><a href="/">Returns</a></li>
+                    <li><a href="/">Privacy Policies</a></li>
                 </ul>
             </div>
             <div class="newsletter">
                 <p>Newsletter</p>
                 <form  action="/submit-data" method="POST">
-                    <label for="email">Enter Your Email Address</label>
-                    <input type="email" name="" id="" required>
+                    <input type="email" name="" id="" required placeholder=" "> 
+                    <label for="email">Your Email Address</label>
                     <button type="submit">
                         <p>SUBSCRIBE</p>
                     </button>

@@ -32,43 +32,63 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
             </div>
         </div>
         <div class="hover">
-            <button>
+            <button class="primary">
                 <p>Add to cart</p>
             </button>
-            <button>
+            <button class="secondary">
                 <p>View details</p>
             </button>
-            <button class="share icon">
-                <app-icon name="share" aria-hidden="true"></app-icon>
-                <span>share</span>
-            </button>
-            <button class="compare icon">
-                <app-icon name="compare" aria-hidden="true"></app-icon>
-                <span>compare</span>
-            </button>
-            <button class="like icon">
-                <app-icon name="like" aria-hidden="true"></app-icon>
-                <span>like</span>
-            </button>
+            <div class="secondary_buttons">
+                <button class="share icon">
+                    <app-icon name="share" aria-hidden="true"></app-icon>
+                    <span>share</span>
+                </button>
+                <button class="compare icon">
+                    <app-icon name="compare" aria-hidden="true"></app-icon>
+                    <span>compare</span>
+                </button>
+                <button class="like icon">
+                    <app-icon name="like" aria-hidden="true"></app-icon>
+                    <span>like</span>
+                </button>
+            </div>
         </div>
     `
     const wildcard = card.querySelector('.wildcard');
+    let banners = wildcard.querySelector('.banners');
     const time = new Date();
     const diffDate = time - timeItem;
     if (old_price != null) {
         const oldPriceSpan = document.createElement('span');
         oldPriceSpan.textContent = old_price;
+        oldPriceSpan.classList.add('old_price');
         wildcard.append(oldPriceSpan);
     };
     if (discount != null) {
         const discountSpan = document.createElement('span');
         discountSpan.textContent = discount;
-        wildcard.append(discountSpan);
+        discountSpan.classList.add('discount');
+        if (!banners) {
+            banners = document.createElement('div');
+            banners.classList.add('banners');
+            banners.append(discountSpan);
+        } else {
+            banners.append(discountSpan);
+        }
+        wildcard.append(banners);
     };
     if (diffDate >= 0 && diffDate <= 604800000) {
         const newItemSpan = document.createElement('span');
         newItemSpan.textContent = 'New';
-        wildcard.append(newItemSpan);
+        newItemSpan.classList.add('new');
+        if (!banners) {
+            banners = document.createElement('div');
+            banners.classList.add('banners');
+            banners.append(newItemSpan);
+        } else {
+            banners.append(newItemSpan);
+        }
+        wildcard.append(banners);
     };
     if (!wildcard.children.length > 0) {
         wildcard.remove();
