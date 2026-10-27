@@ -1,9 +1,24 @@
 body,html {
     --bg-color: #ffffff;
-    --text-color: rgb(51, 51, 51);
+    // --text-color: rgb(51, 51, 51);
+
+
+    --block-primary-color: #FFF3E3;
+    --primaty-color: #B88E2F;
+    --text-color: #333333;
+    --text-color-secondary: #666666;
+    --text-color-for-button: #FFFFFF;
+    --block-info-card: rgba(255, 255, 255, 0.7);
+    --block-secondary-color: #e1e4e9;
+    // --block-test-2: #9F9F9F;
+
+    --icon-size: 2em;
+    // F4F5F7  -грей для неактивных точек и карточек товаров
+    // 9F9F9F  -для футера, серый если выше серый будет отстой.
 
     color-scheme: light;
     font-family: 'Poppins', 'Montserrat', 'Century Gothic', sans-serif;
+    font-weight: 400;
     background: var(--bg-color);
     color: var(--text-color);
     font-size: 1em;
@@ -41,6 +56,77 @@ img {
 h1,h2,h3,p,a,span {
     color: inherit;
     margin: 0;
+}
+
+h1{
+    font-weight: 700;
+}
+
+h2{
+    font-weight: 700;
+}
+
+h3{
+    font-weight: 600;
+}
+
+p{
+    font-weight: 500;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 500;
+}
+
+h1{
+    color: var(--primaty-color);
+}
+
+p{
+    color: var(--text-color-secondary);
+}
+
+button.primary{
+    padding: 15px;
+    border-radius: 0;
+    border: 0;
+    background: var(--primaty-color);
+    color: var(--text-color-for-button);
+    text-transform: capitalize;
+    width: 100%;
+    max-width: 250px;
+    p{
+        color: inherit;
+        font-weight: 700;
+    }
+}
+
+button.secondary{
+    padding: 15px;
+    border-radius: 0;
+    border: 1px solid var(--primaty-color);
+    background: 0;
+    color: var(--primaty-color);
+    text-transform: capitalize;
+    width: 100%;
+    max-width: 250px;
+    p{
+        color: inherit;
+        font-weight: 700;
+    }
+}
+
+button.icon{
+    border: none;
+    line-height: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+button.left{
+    transform: scaleX(-1);
 }
 
 *{

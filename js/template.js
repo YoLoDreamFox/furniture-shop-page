@@ -23,9 +23,11 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
             <div class="image">
                 <img src="${src}" alt="${alt_src}"></img>
             </div>
-            <h3>${name}</h3>
-            <span>${description}</span>
-            <h3>${price}</h3>
+            <div class="info">
+                <h3>${name}</h3>
+                <p>${description}</p>
+                <h3>${price}</h3>
+            </div>
             <div class="wildcard">
             </div>
         </div>
@@ -36,16 +38,16 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
             <button>
                 <p>View details</p>
             </button>
-            <button class="share">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="share icon">
+                <app-icon name="share" aria-hidden="true"></app-icon>
                 <span>share</span>
             </button>
-            <button class="compare">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="compare icon">
+                <app-icon name="compare" aria-hidden="true"></app-icon>
                 <span>compare</span>
             </button>
-            <button class="like">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="like icon">
+                <app-icon name="like" aria-hidden="true"></app-icon>
                 <span>like</span>
             </button>
         </div>
@@ -92,13 +94,12 @@ function carouselCard(id,name,type,number,src,alt_src) {
         </div>
         <div class="info_block">
             <div>
-                <span>${number}</span>
+                <p>${number}</p>
                 <p>${type}</p>
             </div>
             <h3>${name}</h3>
-            <button class="arrow right" aria-label="right arrow">
-                right
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="arrow right icon" aria-label="right arrow">
+                <app-icon name="arrow_info_card" aria-hidden="true"></app-icon>
             </button>
         </div>
     `
@@ -126,6 +127,9 @@ export function templateCarousel(carouselCards) {
 
     carouselCards.forEach((item, index) => {
         const dot = document.createElement('button');
+        dot.innerHTML = `
+            <span class="dot_render"></span>
+        `
         dot.classList.add('dot');
         dot.setAttribute('aria-label',`Слайд ${index+1} из ${carouselCards.length}`);
         if (index === 0) {

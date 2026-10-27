@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <script type="module" src="js/main.js"></script>
-    <title>Document</title>
+    <link rel="icon" href="./favicon.ico">
+    <title>Furniro</title>
 </head>
 <body>
     <header>
         <div class="logo">
-            <div class="icon">
-
-            </div>
-            <div class="name">
-                <p>Furniro</p>
-            </div>
+            <a href="">
+                <div class="icon">
+                    <img src="data/picture/logo.webp" alt=""></img>
+                </div>
+                <div class="name">
+                    <p>Furniro</p>
+                </div>
+            </a>
         </div>
         <nav class="header_navigation">
             <ul>
@@ -26,31 +29,34 @@
             </ul>
         </nav>
         <div class="functional_buttons">
-            <button class="profile" aria-label="profile">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="profile icon" aria-label="profile">
+                <app-icon name="profile" aria-hidden="true"></app-icon>
             </button>
-            <button class="search" aria-label="search">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="search icon" aria-label="search">
+                <app-icon name="search" aria-hidden="true"></app-icon>
             </button>
-            <button class="like" aria-label="favorite list">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="like icon" aria-label="favorite list">
+                <app-icon name="like" aria-hidden="true"></app-icon>
             </button>
-            <button class="cart" aria-label="cart">
-                <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+            <button class="cart icon" aria-label="cart">
+                <app-icon name="cart" aria-hidden="true"></app-icon>
             </button>
         </div>
     </header>
     <main>
         <div class="ad_creative">
             <div class="image">
-                <!-- TODO -->
-                <img src="data/picture/test.png" alt=""></img> 
+                <img src="data/picture/header.webp" alt=""></img> 
             </div>
             <div class="card">
-                <span>New Arrival</span>
-                <h1>Discover Our <br> New Collection</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
-                <button class="">
+                <div>
+                    <div>
+                        <span>New Arrival</span>
+                        <h1>Discover Our <br> New Collection</h1>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
+                </div>
+                <button class="primary">
                     <p>BUY Now</p>
                 </button>
             </div>
@@ -66,13 +72,11 @@
     
                 </div>
                 <div class="scroll_buttons">
-                    <button class="arrow left" aria-label="left arrow">
-                        left
-                        <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+                    <button class="arrow left icon" aria-label="left arrow">
+                        <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
                     </button>
-                    <button class="arrow right" aria-label="right arrow">
-                        right
-                        <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+                    <button class="arrow right icon" aria-label="right arrow">
+                        <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
                     </button>
                 </div>
             </div>
@@ -85,7 +89,7 @@
 
                 </div>
                 <div class="show_more">
-                    <button>
+                    <button class="secondary">
                         <p>Show more</p>
                     </button>
                 </div>
@@ -97,20 +101,18 @@
                     <h2>50+ Beautiful rooms inspiration</h2>
                     <p>Our designer already made a lot of beautiful prototipe of rooms that inspire you</p>
                 </div>
-                <button>
+                <button class="primary">
                     <p>Explore More</p>
                 </button>
             </div>
             <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="">
                 <!-- TODO template 4 -->
                 <div class="scroll_buttons">
-                    <button id="carouselScrollButtonLeft" class="arrow left" aria-label="left arrow">
-                        left
-                        <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+                    <button id="carouselScrollButtonLeft" class="arrow left icon" aria-label="left arrow">
+                        <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
                     </button>
-                    <button id="carouselScrollButtonRight" class="arrow right" aria-label="right arrow">
-                        right
-                        <!-- <app-icon name="" aria-hidden="true"></app-icon> -->
+                    <button id="carouselScrollButtonRight" class="arrow right icon" aria-label="right arrow">
+                        <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
                     </button>
                 </div>
             </div>

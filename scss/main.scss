@@ -7,6 +7,8 @@ body>header{
     justify-content: space-between;
     padding: 30px 6.25%; //TODO
     gap: 15px; //TODO
+    align-items: center; 
+    color: black; //TODO
 
     >.header_navigation{
         >ul{
@@ -21,6 +23,24 @@ body>header{
     >.functional_buttons{
         display: flex;
         gap: 45px; //TODO
+    }
+
+    >.logo>a{
+        display: flex;
+        align-items: center; 
+        gap: 5px;
+        >.icon{
+            width: 3em;
+            display: flex;
+            justify-content: center;
+        }
+        >.name{
+            p{
+                font-weight: 700;
+                font-size: 2em;
+                color: black; //TODO
+            }
+        }
     }
 }
 
@@ -39,13 +59,26 @@ main {
         }
 
         .card{
-            background: aqua;
+            background: var(--block-primary-color);
             position: absolute;
             top: 50%;
             right: 0;
             transform: translateY(-50%);
             padding: 40px; //TODO
             max-width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 50px; //TODO
+
+            >*{
+                display: flex;
+                flex-direction: column;
+                gap: 15px; //TODO
+            }
+
+            >button{
+                text-transform: uppercase;
+            }
         }
     }
 
@@ -96,7 +129,11 @@ main {
                     position: relative;
 
                     >.standart{
-                        background: aqua;
+                        background: var(--block-secondary-color);
+
+                        >.info{
+                            padding: 15px;
+                        }
                     }
 
                     >.hover{
@@ -115,7 +152,8 @@ main {
             }
 
             >.show_more{
-                margin: auto;
+                display: flex;
+                justify-content: center;
             }
         }
     }
@@ -126,7 +164,7 @@ main {
         grid-template-columns: 1fr 2fr;
         padding: 40px 6.25%; //TODO
         gap: 40px; //TODO
-        background: aqua;
+        background: var(--block-primary-color);
         width: 100vw;
         position: relative;
         left: 50%;
@@ -146,8 +184,27 @@ main {
             position: relative;
 
             >.scroll_buttons{
-                position: absolute;
-                z-index: 1;
+                --icon-size: 1em;
+                >button{
+                    color: var(--primaty-color);
+                    position: absolute;
+                    z-index: 1;
+                    padding: 10px;
+                    border-radius: 50%;
+                    background: var(--bg-color);
+                    top: 50%;
+                    box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5); //TODO
+
+                    &.left{
+                        left: 5px;
+                        transform: scaleX(-1) translateY(-50%);
+                    };
+
+                    &.right{
+                        right: 5px;
+                        transform: translateY(-50%);
+                    }
+                }
             }
 
 
@@ -162,29 +219,33 @@ main {
                     >.card_carousel{
                         position: relative;
                         min-width: 70%;
-                        transform: scale(1,1);
+                        transform: scale(0.7,0.7);
+                        align-self: flex-start;
                         transform-origin: top left; 
                         transition: transform 0.5s ease-in-out;
                         >.info_block{
+                            opacity: 0;
+                            visibility: hidden;
                             position: absolute;
-                            background: whitesmoke;
+                            background: var(--block-info-card);
                             padding: 30px; //TODO
                             display: flex;
                             flex-direction: column;
                             gap: 10px; //TODO
                             bottom: 20px; //TODO
                             left: 20px; //TODO
+                            transition: opacity 0.5s ease, visibility 0.5s ease; //TODO
                             >*:first-child{
                                 display: flex;
                                 gap: 10px; //TODO
-                                span{
+                                >*:first-child{
                                     display: contents;
                                     &::after{
                                         content: "";
                                         display: inline-block;
                                         width: 25px;
                                         height: 1px;
-                                        background-color: #000;
+                                        background-color: var(--text-color-secondary);
                                         margin: auto;
                                     }
                                 }
@@ -194,21 +255,61 @@ main {
                                 bottom: 0;
                                 right: 0;
                                 transform: translate(100%,0);
+                                padding: 15px; //TODO
+                                background: var(--primaty-color);
+                                color: var(--text-color-for-button);
                             }
                         }
                     }
+                    >.active{
+                        transform: scale(1,1);
 
-
-                    >*:not(.active){
-                        // min-width: 60%; //TODO
-                        transform: scale(0.7,0.7);
-                        align-self: flex-start;
+                        >.info_block{
+                            opacity: 1;
+                            visibility: visible;
+                        }
                     }
                 }
                 >.carousel_indicators{
                     position: absolute;
                     bottom: 0;
-                    left: calc(70% + 25px) //TODO
+                    left: calc(70% + 25px); //TODO
+                    display: flex;
+                    gap: 10px; //TODO
+                    >.dot{
+                        border: none;
+                        background: transparent;
+                        margin: 0;
+                        padding: 0;
+                        >.dot_render{
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 24px; //TODO
+                            height: 24px; //TODO
+                            border: 2px solid transparent;
+                            border-radius: 50%;
+                            transition: border 0.5s ease;
+
+                            &::before{
+                                content: "";
+                                width: 8px; //TODO
+                                height: 8px; //TODO
+                                background-color: var(--text-color-secondary);
+                                border-radius: 50%;
+                                transition:  background-color 0.5s ease;
+                            }
+                        }
+
+                        &.active{
+                            >.dot_render{
+                                border: 2px solid var(--primaty-color);
+                                &::before{
+                                    background-color: var(--primaty-color);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -233,7 +334,7 @@ footer{
         padding: 0 0 30px 0; //TODO
     }
     >*:last-child{
-        border-top: 1px solid aqua;
+        border-top: 1px solid var(--block-secondary-color);
         padding: 30px 0 0 0; //TODO
     }
 }

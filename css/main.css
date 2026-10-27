@@ -1,8 +1,16 @@
 body, html {
   --bg-color: #ffffff;
-  --text-color: rgb(51, 51, 51);
+  --block-primary-color: #FFF3E3;
+  --primaty-color: #B88E2F;
+  --text-color: #333333;
+  --text-color-secondary: #666666;
+  --text-color-for-button: #FFFFFF;
+  --block-info-card: rgba(255, 255, 255, 0.7);
+  --block-secondary-color: #e1e4e9;
+  --icon-size: 2em;
   color-scheme: light;
   font-family: "Poppins", "Montserrat", "Century Gothic", sans-serif;
+  font-weight: 400;
   background: var(--bg-color);
   color: var(--text-color);
   font-size: 1em;
@@ -42,6 +50,78 @@ img {
 h1, h2, h3, p, a, span {
   color: inherit;
   margin: 0;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+p {
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+h1 {
+  color: var(--primaty-color);
+}
+
+p {
+  color: var(--text-color-secondary);
+}
+
+button.primary {
+  padding: 15px;
+  border-radius: 0;
+  border: 0;
+  background: var(--primaty-color);
+  color: var(--text-color-for-button);
+  text-transform: capitalize;
+  width: 100%;
+  max-width: 250px;
+}
+button.primary p {
+  color: inherit;
+  font-weight: 700;
+}
+
+button.secondary {
+  padding: 15px;
+  border-radius: 0;
+  border: 1px solid var(--primaty-color);
+  background: 0;
+  color: var(--primaty-color);
+  text-transform: capitalize;
+  width: 100%;
+  max-width: 250px;
+}
+button.secondary p {
+  color: inherit;
+  font-weight: 700;
+}
+
+button.icon {
+  border: none;
+  line-height: 0;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+button.left {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
 }
 
 * {
@@ -91,6 +171,10 @@ body > header {
           justify-content: space-between;
   padding: 30px 6.25%;
   gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
 }
 body > header > .header_navigation > ul {
   display: -webkit-box;
@@ -106,6 +190,29 @@ body > header > .functional_buttons {
   display: -ms-flexbox;
   display: flex;
   gap: 45px;
+}
+body > header > .logo > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+body > header > .logo > a > .icon {
+  width: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+body > header > .logo > a > .name p {
+  font-weight: 700;
+  font-size: 2em;
+  color: black;
 }
 
 main {
@@ -124,7 +231,7 @@ main > .ad_creative .image {
   aspect-ratio: 2/1;
 }
 main > .ad_creative .card {
-  background: aqua;
+  background: var(--block-primary-color);
   position: absolute;
   top: 50%;
   right: 0;
@@ -132,6 +239,27 @@ main > .ad_creative .card {
           transform: translateY(-50%);
   padding: 40px;
   max-width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 50px;
+}
+main > .ad_creative .card > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+}
+main > .ad_creative .card > button {
+  text-transform: uppercase;
 }
 main > .browse_the_range {
   text-align: center;
@@ -201,7 +329,10 @@ main > .products > * .all_products > .card {
   position: relative;
 }
 main > .products > * .all_products > .card > .standart {
-  background: aqua;
+  background: var(--block-secondary-color);
+}
+main > .products > * .all_products > .card > .standart > .info {
+  padding: 15px;
 }
 main > .products > * .all_products > .card > .hover {
   position: absolute;
@@ -216,14 +347,19 @@ main > .products > * .all_products > .card:hover > .hover {
   visibility: visible;
 }
 main > .products > * > .show_more {
-  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 main > .exemples {
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 40px 6.25%;
   gap: 40px;
-  background: aqua;
+  background: var(--block-primary-color);
   width: 100vw;
   position: relative;
   left: 50%;
@@ -247,8 +383,28 @@ main > .exemples .carousel {
   position: relative;
 }
 main > .exemples .carousel > .scroll_buttons {
+  --icon-size: 1em;
+}
+main > .exemples .carousel > .scroll_buttons > button {
+  color: var(--primaty-color);
   position: absolute;
   z-index: 1;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  top: 50%;
+  -webkit-box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.5);
+}
+main > .exemples .carousel > .scroll_buttons > button.left {
+  left: 5px;
+  -webkit-transform: scaleX(-1) translateY(-50%);
+          transform: scaleX(-1) translateY(-50%);
+}
+main > .exemples .carousel > .scroll_buttons > button.right {
+  right: 5px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 main > .exemples .carousel > .all_carousel {
   position: relative;
@@ -267,8 +423,10 @@ main > .exemples .carousel > .all_carousel > .all_cards {
 main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel {
   position: relative;
   min-width: 70%;
-  -webkit-transform: scale(1, 1);
-          transform: scale(1, 1);
+  -webkit-transform: scale(0.7, 0.7);
+          transform: scale(0.7, 0.7);
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   -webkit-transform-origin: top left;
           transform-origin: top left;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
@@ -277,8 +435,10 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel {
   transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
 main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block {
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
-  background: whitesmoke;
+  background: var(--block-info-card);
   padding: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -290,6 +450,8 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info
   gap: 10px;
   bottom: 20px;
   left: 20px;
+  -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child {
   display: -webkit-box;
@@ -297,15 +459,15 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info
   display: flex;
   gap: 10px;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child span {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child > *:first-child {
   display: contents;
 }
-main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child span::after {
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > *:first-child > *:first-child::after {
   content: "";
   display: inline-block;
   width: 25px;
   height: 1px;
-  background-color: #000;
+  background-color: var(--text-color-secondary);
   margin: auto;
 }
 main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > button {
@@ -314,17 +476,64 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info
   right: 0;
   -webkit-transform: translate(100%, 0);
           transform: translate(100%, 0);
+  padding: 15px;
+  background: var(--primaty-color);
+  color: var(--text-color-for-button);
 }
-main > .exemples .carousel > .all_carousel > .all_cards > *:not(.active) {
-  -webkit-transform: scale(0.7, 0.7);
-          transform: scale(0.7, 0.7);
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+main > .exemples .carousel > .all_carousel > .all_cards > .active {
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+main > .exemples .carousel > .all_carousel > .all_cards > .active > .info_block {
+  opacity: 1;
+  visibility: visible;
 }
 main > .exemples .carousel > .all_carousel > .carousel_indicators {
   position: absolute;
   bottom: 0;
   left: calc(70% + 25px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot {
+  border: none;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot > .dot_render {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  -webkit-transition: border 0.5s ease;
+  transition: border 0.5s ease;
+}
+main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot > .dot_render::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--text-color-secondary);
+  border-radius: 50%;
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot.active > .dot_render {
+  border: 2px solid var(--primaty-color);
+}
+main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot.active > .dot_render::before {
+  background-color: var(--primaty-color);
 }
 main > .share_your_setup {
   text-align: center;
@@ -352,6 +561,6 @@ footer > *:first-child {
   padding: 0 0 30px 0;
 }
 footer > *:last-child {
-  border-top: 1px solid aqua;
+  border-top: 1px solid var(--block-secondary-color);
   padding: 30px 0 0 0;
 }
