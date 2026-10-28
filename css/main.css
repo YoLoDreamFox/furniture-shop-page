@@ -80,6 +80,11 @@ p {
 a {
   text-decoration: none;
   font-weight: 500;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: var(--primaty-color);
 }
 
 h1 {
@@ -91,6 +96,8 @@ p {
 }
 
 button.primary {
+  cursor: pointer;
+  position: relative;
   padding: 15px;
   border-radius: 0;
   border: 0;
@@ -104,11 +111,32 @@ button.primary p {
   color: inherit;
   font-weight: 700;
 }
+button.primary:before {
+  content: "";
+  position: absolute;
+  border: var(--primaty-color) solid 4px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  -webkit-transition-property: top right bottom left;
+  transition-property: top right bottom left;
+}
+button.primary:hover:before {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+}
 
 button.secondary {
+  position: relative;
+  cursor: pointer;
   padding: 15px;
   border-radius: 0;
-  border: 1px solid var(--primaty-color);
+  border: none;
   background: 0;
   color: var(--primaty-color);
   text-transform: capitalize;
@@ -118,6 +146,30 @@ button.secondary {
 button.secondary p {
   color: inherit;
   font-weight: 700;
+}
+button.secondary:before, button.secondary:after {
+  content: "";
+  position: absolute;
+  width: 99%;
+  height: 96%;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+button.secondary:before {
+  top: 0;
+  left: 0;
+  border-left: 2px solid var(--primaty-color);
+  border-top: 2px solid var(--primaty-color);
+}
+button.secondary:after {
+  bottom: 0;
+  right: 0;
+  border-right: 2px solid var(--primaty-color);
+  border-bottom: 2px solid var(--primaty-color);
+}
+button.secondary:hover:before, button.secondary:hover:after {
+  width: 10%;
+  height: 25%;
 }
 
 div.scroll_buttons {
@@ -146,11 +198,17 @@ div.scroll_buttons > button.right {
 }
 
 button.icon {
+  cursor: pointer;
   border: none;
   line-height: 0;
   background: transparent;
   margin: 0;
   padding: 0;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+button.icon:hover {
+  color: var(--primaty-color);
 }
 
 button.left {
@@ -165,6 +223,32 @@ button.left {
 
 .invisible {
   display: none !important;
+}
+
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  bottom: 30px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease, visibility 0.4s;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 @font-face {
@@ -330,6 +414,7 @@ main > .browse_the_range > *:last-child > .type > .card {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  scroll-snap-align: center;
   gap: 30px;
   width: 100%;
   min-width: 300px;
@@ -477,6 +562,9 @@ main > .products > * .all_products > .card > .hover > .secondary_buttons > butto
   place-items: center;
   color: var(--text-color-for-button);
 }
+main > .products > * .all_products > .card > .hover > .secondary_buttons > button:hover {
+  color: var(--primaty-color);
+}
 main > .products > * .all_products > .card:hover > .hover {
   opacity: 1;
   visibility: visible;
@@ -545,6 +633,9 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel {
   transition: transform 0.5s ease-in-out;
   transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 }
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .image {
+  max-width: 900px;
+}
 main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block {
   opacity: 0;
   visibility: hidden;
@@ -591,6 +682,18 @@ main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info
   background: var(--primaty-color);
   color: var(--text-color-for-button);
 }
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > button > app-icon {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: -webkit-transform 0.2s ease;
+  transition: -webkit-transform 0.2s ease;
+  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block > button:hover > app-icon {
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+}
 main > .exemples .carousel > .all_carousel > .all_cards > .active {
   -webkit-transform: scale(1, 1);
           transform: scale(1, 1);
@@ -609,6 +712,7 @@ main > .exemples .carousel > .all_carousel > .carousel_indicators {
   gap: 10px;
 }
 main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot {
+  cursor: pointer;
   border: none;
   background: transparent;
   margin: 0;
@@ -640,6 +744,9 @@ main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot > .dot_
   -webkit-transition: background-color 0.5s ease;
   transition: background-color 0.5s ease;
 }
+main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot > .dot_render:hover::before {
+  background-color: var(--primaty-color);
+}
 main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot.active > .dot_render {
   border: 2px solid var(--primaty-color);
 }
@@ -648,6 +755,26 @@ main > .exemples .carousel > .all_carousel > .carousel_indicators > .dot.active 
 }
 main > .share_your_setup {
   text-align: center;
+}
+main > .share_your_setup > .all_image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 16px;
+}
+main > .share_your_setup > .all_image > .image {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  height: 300px;
+  max-height: 300px;
+  overflow: auto;
+}
+main > .share_your_setup > .all_image > .image > img {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 main > *:last-child {
   padding-bottom: 50px;
@@ -763,6 +890,13 @@ footer > *:first-child > .newsletter > form > input {
   padding: 0;
   border: none;
   border-bottom: 2px solid;
+  border-color: var(--text-color);
+  -webkit-transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
+}
+footer > *:first-child > .newsletter > form > input:focus {
+  outline: none;
+  border-color: var(--primaty-color);
 }
 footer > *:first-child > .newsletter > form > input:not(:-moz-placeholder) ~ label {
   bottom: 100%;
@@ -774,13 +908,26 @@ footer > *:first-child > .newsletter > form > input:focus ~ label, footer > *:fi
   bottom: 100%;
 }
 footer > *:first-child > .newsletter > form > button {
+  padding: 0;
   border: none;
+  cursor: pointer;
   background: transparent;
   border-bottom: 2px solid;
+  border-color: var(--text-color);
+  -webkit-transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 footer > *:first-child > .newsletter > form > button > p {
   color: var(--text-color);
   padding: 0;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+footer > *:first-child > .newsletter > form > button:hover {
+  border-color: var(--primaty-color);
+}
+footer > *:first-child > .newsletter > form > button:hover > p {
+  color: var(--primaty-color);
 }
 footer > *:last-child {
   border-top: 1px solid var(--block-secondary-color);

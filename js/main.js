@@ -187,9 +187,29 @@ function scrollForAllCards() {
     }
 }
 
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+function demo() {
+    const demos = document.querySelectorAll('.demo');
+    for (const demo of demos){
+        demo.addEventListener('click', () => {
+            showToast('This button is not available because this is a demo page.')
+        });
+    }
+}
+
 renderIcons();
 renderAssortmentTypes();
 renderProductCards();
 renderCarousel();
 carouselLogic();
 scrollForAllCards();
+demo();

@@ -32,22 +32,22 @@ export function templateProductCard(name,description,price,src,alt_src,timeItem,
             </div>
         </div>
         <div class="hover">
-            <button class="primary">
+            <button class="primary demo">
                 <p>Add to cart</p>
             </button>
-            <button class="secondary">
+            <button class="secondary demo">
                 <p>View details</p>
             </button>
             <div class="secondary_buttons">
-                <button class="share icon">
+                <button class="share icon demo">
                     <app-icon name="share" aria-hidden="true"></app-icon>
                     <span>share</span>
                 </button>
-                <button class="compare icon">
+                <button class="compare icon demo">
                     <app-icon name="compare" aria-hidden="true"></app-icon>
                     <span>compare</span>
                 </button>
-                <button class="like icon">
+                <button class="like icon demo">
                     <app-icon name="like" aria-hidden="true"></app-icon>
                     <span>like</span>
                 </button>
@@ -118,7 +118,7 @@ function carouselCard(id,name,type,number,src,alt_src) {
                 <p>${type}</p>
             </div>
             <h3>${name}</h3>
-            <button class="arrow right icon" aria-label="right arrow">
+            <button class="arrow right icon demo" aria-label="right arrow">
                 <app-icon name="arrow_info_card" aria-hidden="true"></app-icon>
             </button>
         </div>

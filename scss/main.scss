@@ -102,6 +102,7 @@ main {
                 >.card{
                     display: flex;
                     flex-direction: column;
+                    scroll-snap-align: center;
                     gap: 30px;
                     width: 100%;
                     min-width: 300px; //TODO
@@ -222,6 +223,10 @@ main {
                                 display: flex;
                                 place-items: center;
                                 color: var(--text-color-for-button);
+
+                                    &:hover{
+                                        color: var(--primaty-color);
+                                    }
                             }
                         }
                     }
@@ -282,6 +287,11 @@ main {
                         align-self: flex-start;
                         transform-origin: top left; 
                         transition: transform 0.5s ease-in-out;
+
+                        >.image{
+                            max-width: 900px; //TODO
+                        }
+
                         >.info_block{
                             opacity: 0;
                             visibility: hidden;
@@ -317,6 +327,18 @@ main {
                                 padding: 15px; //TODO
                                 background: var(--primaty-color);
                                 color: var(--text-color-for-button);
+
+                                >app-icon{
+                                    transform: translateX(0);
+                                    transition: transform 0.2s ease;
+                                }
+
+
+                                &:hover{
+                                    >app-icon{
+                                        transform: translateX(5px);
+                                    }
+                                }
                             }
                         }
                     }
@@ -336,6 +358,7 @@ main {
                     display: flex;
                     gap: 10px; //TODO
                     >.dot{
+                        cursor: pointer;
                         border: none;
                         background: transparent;
                         margin: 0;
@@ -358,6 +381,12 @@ main {
                                 border-radius: 50%;
                                 transition:  background-color 0.5s ease;
                             }
+
+                            &:hover{
+                                &::before{
+                                    background-color: var(--primaty-color);
+                                }
+                            }
                         }
 
                         &.active{
@@ -376,6 +405,23 @@ main {
 
     >.share_your_setup{
         text-align: center;
+
+        >.all_image{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+
+            >.image{
+                flex: 1 1 auto;
+                height: 300px;
+                max-height: 300px;
+                overflow: auto;
+
+                >img{
+                    object-fit: contain;
+                }
+            }
+        }
     }
 
     >*:last-child{
@@ -455,6 +501,13 @@ footer{
                     padding: 0;
                     border: none;
                     border-bottom: 2px solid;
+                    border-color: var(--text-color);
+                    transition: border-color 0.2s ease;
+
+                    &:focus{
+                        outline: none;
+                        border-color: var(--primaty-color);
+                    }
                 }
 
                 & >input:focus ~ label,
@@ -463,12 +516,23 @@ footer{
                 }
 
                 >button{
+                    padding: 0;
                     border: none;
+                    cursor: pointer;
                     background: transparent;
                     border-bottom: 2px solid;
+                    border-color: var(--text-color);
+                    transition: border-color 0.2s ease;
                     >p{
                         color: var(--text-color);
                         padding: 0;
+                        transition: color 0.2s ease;
+                    }
+                    &:hover{
+                        border-color: var(--primaty-color);
+                        >p{
+                            color: var(--primaty-color);
+                        }
                     }
                 }
             }

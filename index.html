@@ -29,16 +29,16 @@
             </ul>
         </nav>
         <div class="functional_buttons">
-            <button class="profile icon" aria-label="profile">
+            <button class="profile icon demo" aria-label="profile">
                 <app-icon name="profile" aria-hidden="true"></app-icon>
             </button>
-            <button class="search icon" aria-label="search">
+            <button class="search icon demo" aria-label="search">
                 <app-icon name="search" aria-hidden="true"></app-icon>
             </button>
-            <button class="like icon" aria-label="favorite list">
+            <button class="like icon demo" aria-label="favorite list">
                 <app-icon name="like" aria-hidden="true"></app-icon>
             </button>
-            <button class="cart icon" aria-label="cart">
+            <button class="cart icon demo" aria-label="cart">
                 <app-icon name="cart" aria-hidden="true"></app-icon>
             </button>
         </div>
@@ -56,7 +56,7 @@
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
                 </div>
-                <button class="primary">
+                <button class="primary demo">
                     <p>BUY Now</p>
                 </button>
             </div>
@@ -68,8 +68,6 @@
             </div>
             <div>
                 <div class="type" id="assortmentTypes">
-                    <!-- TODO template 1-->
-    
                 </div>
                 <div class="scroll_buttons">
                     <button id="scrollButtonLeft" class="arrow left icon" aria-label="left arrow">
@@ -85,11 +83,9 @@
             <h2>Our Products</h2>
             <div>
                 <div class="all_products" id="productCards">
-                    <!-- TODO template 2-->
-
                 </div>
                 <div class="show_more">
-                    <button class="secondary">
+                    <button class="secondary demo">
                         <p>Show more</p>
                     </button>
                 </div>
@@ -101,12 +97,11 @@
                     <h2>50+ Beautiful rooms inspiration</h2>
                     <p>Our designer already made a lot of beautiful prototipe of rooms that inspire you</p>
                 </div>
-                <button class="primary">
+                <button class="primary demo">
                     <p>Explore More</p>
                 </button>
             </div>
             <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="">
-                <!-- TODO template 4 -->
                 <div class="scroll_buttons">
                     <button id="carouselScrollButtonLeft" class="arrow left icon" aria-label="left arrow">
                         <app-icon name="arrow_for_button" aria-hidden="true"></app-icon>
@@ -122,6 +117,16 @@
             <h2>#FuniroFurniture</h2>
             <div class="all_image">
                 <!-- TODO -->
+                
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_1.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_2.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_3.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_4.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_5.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_6.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_7.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_8.webp" alt=""></div>
+                <div class="image"><img src="data/picture/FuniroFurniture/picture_9.webp" alt=""></div>
             </div>
         </div>
     </main>
@@ -155,7 +160,7 @@
                 <form  action="/submit-data" method="POST">
                     <input type="email" name="" id="" required placeholder=" "> 
                     <label for="email">Your Email Address</label>
-                    <button type="submit">
+                    <button type="submit" class="demo">
                         <p>SUBSCRIBE</p>
                     </button>
                 </form>
@@ -165,5 +170,7 @@
             <p>2023 furino. All rights reverved</p>
         </div>
     </footer>
+
+    <div id="toast" class="toast"></div>
 </body>
 </html>
