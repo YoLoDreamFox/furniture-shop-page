@@ -9,3 +9,43 @@ $padding-large: 40px;
 
 $min-width-standart: 300px;
 $max-width-standart: 300px;
+
+$page-gutter: 6.25%;
+$header-padding-trim: 10px;
+
+$duration-fast: 0.2s;
+$duration-slow: 0.5s;
+$ease: ease-in-out;
+
+$border-width: 2px;
+$radius-image: 10px;
+
+$button-padding: 15px;
+$button-max-width: 250px;
+$button-border-outer: 4px;
+$button-border-inner: 4px;
+$scroll-button-padding: 10px;
+$scroll-button-offset: 5px;
+
+$shadow-scroll-button: 0 0 12px 1px var(--shadow-color);
+$shadow-footer: 0 -10px 15px -10px var(--shadow-color);
+
+$font-family: 'Poppins', 'Montserrat', 'Century Gothic', sans-serif;
+
+$inset-small: 15px;
+$inset-medium: 20px;
+$banner-side-gap: 5%;
+
+$carousel-card-width: 70%;
+$carousel-card-scale: 0.7;
+$carousel-dots-offset: 25px;
+$carousel-line-length: 25px;
+$dot-size: 24px;
+$dot-core-size: 8px;
+$arrow-nudge: 5px;
+
+$gallery-image-height: 300px;
+
+$range-card-max-width: calc($max-width-standart + 100px);
+$newsletter-input-max-width: calc($max-width-standart - 100px);
+$carousel-image-max-width: calc($max-width-standart * 2);

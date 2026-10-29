@@ -1,13 +1,15 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
 @mixin variables {
     --icon-size: 2em;
 }
 
-
-body,html {
+body, html {
     --bg-color: #ffffff;
 
     --block-primary-color: #FFF3E3;
-    --primaty-color: #B88E2F;
+    --primary-color: #B88E2F;
     --text-color: #333333;
     --text-color-secondary: #666666;
     --text-color-for-button: #FFFFFF;
@@ -19,7 +21,7 @@ body,html {
     --new-color: #2EC1AC;
 
     color-scheme: light;
-    font-family: 'Poppins', 'Montserrat', 'Century Gothic', sans-serif;
+    font-family: $font-family;
     font-weight: 400;
     background: var(--bg-color);
     color: var(--text-color);
@@ -29,98 +31,81 @@ body,html {
 }
 
 @mixin global_style {
-    body{
+    body {
         height: 100%;
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
-    
-        header,main{
+
+        header, main {
             min-width: 0;
             min-height: 0;
             display: flex;
-            padding: 0 6.25%;
+            padding: 0 $page-gutter;
             flex-direction: column;
         }
     }
-    
-    
-    .image{
+
+    .image {
         overflow: hidden;
         font-size: 0;
     }
-    
+
     img {
         width: 100%;
         height: 100%;
     }
-    
-    input{
+
+    input {
         font-size: 1em;
-        font-family: 'Poppins', 'Montserrat', 'Century Gothic', sans-serif;
+        font-family: $font-family;
         font-weight: 400;
     }
-    
-    
-    h1,h2,h3,p,a,span {
+
+    h1, h2, h3, p, a, span {
         color: inherit;
         margin: 0;
     }
-    
-    h1{
+
+    h1, h2 {
         font-weight: 700;
     }
-    
-    h2{
-        font-weight: 700;
-    }
-    
-    h3{
+
+    h3 {
         font-weight: 600;
     }
-    
-    p{
+
+    p {
         font-weight: 500;
-    }
-    
-    a{
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s ease-in-out;
-        &:hover{
-            color: var(--primaty-color);
-        }
-    }
-    
-    h1{
-        color: var(--primaty-color);
-    }
-    
-    p{
         color: var(--text-color-secondary);
     }
-    
-    button.primary{
-        cursor: pointer;
-        $outerBorderWidth: 4px; //TODO
-        $innerBorderWidth: 4px; //TODO
-        position: relative;
-        padding: 15px;
-        border-radius: 0;
-        border: 0;
-        background: var(--primaty-color);
-        color: var(--text-color-for-button);
-        text-transform: capitalize;
-        width: 100%;
-        max-width: 250px;
-        p{
-            color: inherit;
-            font-weight: 700;
+
+    a {
+        text-decoration: none;
+        font-weight: 500;
+        transition: color $duration-fast $ease;
+
+        &:hover {
+            color: var(--primary-color);
         }
+    }
+
+    h1 {
+        color: var(--primary-color);
+    }
+
+    button.primary {
+        @include button-base;
+        position: relative;
+        background: var(--primary-color);
+        color: var(--text-color-for-button);
+
+        $grow: $button-border-outer + $button-border-inner;
+
         &:before {
             content: '';
             position: absolute;
-            border:  var(--primaty-color) solid $outerBorderWidth;
+            border: var(--primary-color) solid $button-border-outer;
             top: 0;
             right: 0;
             bottom: 0;
@@ -128,106 +113,102 @@ body,html {
             transition-duration: .3s;
             transition-property: top right bottom left;
         }
-    
+
         &:hover:before {
-            top: -($outerBorderWidth + $innerBorderWidth);
-            right: -($outerBorderWidth + $innerBorderWidth);
-            bottom: -($outerBorderWidth + $innerBorderWidth);
-            left: -($outerBorderWidth + $innerBorderWidth);
+            top: -$grow;
+            right: -$grow;
+            bottom: -$grow;
+            left: -$grow;
         }
     }
-    
-    button.secondary{
+
+    button.secondary {
+        @include button-base;
         position: relative;
-        cursor: pointer;
-        padding: 15px;
-        border-radius: 0;
-        border: none;
-        background: 0;
-        color: var(--primaty-color);
-        text-transform: capitalize;
-        width: 100%;
-        max-width: 250px;
-        p{
-            color: inherit;
-            font-weight: 700;
-        }
-    
+        background: none;
+        color: var(--primary-color);
+
         &:before,
         &:after {
             content: '';
             position: absolute;
-            width: 99%; height: 96%;
+            width: 99%;
+            height: 96%;
             transition: 0.35s;
         }
+
         &:before {
-            top: 0; left: 0;
-            border-left: 2px solid var(--primaty-color);
-            border-top: 2px solid var(--primaty-color);
+            top: 0;
+            left: 0;
+            border-left: $border-width solid var(--primary-color);
+            border-top: $border-width solid var(--primary-color);
         }
+
         &:after {
-            bottom: 0; right: 0;
-            border-right: 2px solid var(--primaty-color);
-            border-bottom: 2px solid var(--primaty-color);
+            bottom: 0;
+            right: 0;
+            border-right: $border-width solid var(--primary-color);
+            border-bottom: $border-width solid var(--primary-color);
         }
+
         &:hover:before,
         &:hover:after {
             width: 10%;
             height: 25%;
         }
     }
-    
-    div.scroll_buttons{
+
+    div.scroll_buttons {
         --icon-size: 1em;
-        >button{
-            color: var(--primaty-color);
+
+        > button {
+            color: var(--primary-color);
             position: absolute;
             z-index: 1;
-            padding: 10px;
+            padding: $scroll-button-padding;
             border-radius: 50%;
             background: var(--bg-color);
             top: 50%;
-            box-shadow: 0 0 12px 1px var(--shadow-color); //TODO
-    
-            &.left{
-                left: 5px;
+            box-shadow: $shadow-scroll-button;
+
+            &.left {
+                left: $scroll-button-offset;
                 transform: scaleX(-1) translateY(-50%);
-            };
-    
-            &.right{
-                right: 5px;
+            }
+
+            &.right {
+                right: $scroll-button-offset;
                 transform: translateY(-50%);
             }
         }
     }
-    
-    button.icon{
+
+    button.icon {
         cursor: pointer;
         border: none;
         line-height: 0;
         background: transparent;
         margin: 0;
         padding: 0;
-        transition: color 0.2s ease;
-    
-        &:hover{
-            color: var(--primaty-color);
+        transition: color $duration-fast ease;
+
+        &:hover {
+            color: var(--primary-color);
         }
     }
-    
-    button.left{
+
+    button.left {
         transform: scaleX(-1);
     }
-    
-    *{
+
+    * {
         box-sizing: border-box;
     }
-    
-    .invisible{
-        display: none !important; 
+
+    .invisible {
+        display: none !important;
     }
-    
-    
+
     .toast {
         visibility: hidden;
         min-width: 250px;
@@ -241,10 +222,11 @@ body,html {
         left: 50%;
         bottom: 30px;
         transform: translateX(-50%);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         opacity: 0;
         transition: opacity 0.4s ease, visibility 0.4s;
     }
+
     .toast.show {
         visibility: visible;
         opacity: 1;

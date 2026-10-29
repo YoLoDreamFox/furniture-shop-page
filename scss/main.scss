@@ -1,75 +1,70 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 @use "./global.scss" as global;
 @use "./font.scss" as font;
 
-
 @layer import, main, mobile;
 
-@layer import{
-    body,html{
+@layer import {
+    body, html {
         @include global.variables;
     }
 }
 
-@layer main{
+@layer main {
     @include global.global_style;
-    body>header{
+
+    body > header {
         flex-direction: row;
         justify-content: space-between;
-        padding: calc($padding-medium - 10px) 6.25%;
+        padding: calc($padding-medium - $header-padding-trim) $page-gutter;
         gap: $gap-medium;
-        align-items: center; 
+        align-items: center;
         color: var(--text-color-accent);
-    
-        >.header_navigation{
-            >ul{
-                display: flex;
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                gap: $gap-extra-large; 
-            }
+
+        > .header_navigation > ul {
+            @include list-reset;
+            display: flex;
+            gap: $gap-extra-large;
         }
-    
-        >.functional_buttons{
+
+        > .functional_buttons {
             display: flex;
             gap: $gap-medium;
         }
-    
-        >.logo>a{
+
+        > .logo > a {
             display: flex;
-            align-items: center; 
+            align-items: center;
             gap: $gap-small;
-            >.icon{
+
+            > .icon {
                 width: 3em;
                 display: flex;
                 justify-content: center;
             }
-            >.name{
-                p{
-                    font-weight: 700;
-                    font-size: 2em;
-                    color: var(--text-color-accent);
-                }
+
+            > .name p {
+                font-weight: 700;
+                font-size: 2em;
+                color: var(--text-color-accent);
             }
         }
     }
-    
+
     main {
         gap: $gap-extra-large;
-        >.ad_creative{
+
+        > .ad_creative {
             position: relative;
-            .image{
-                width: 100vw;
-                position: relative;
-                left: 50%;
-                right: 50%;
-                margin-left: -50vw;
-                margin-right: -50vw;
+
+            .image {
+                @include full-bleed;
                 aspect-ratio: 2/1;
             }
-    
-            .card{
+
+            .card {
+                @include flex-column($gap-extra-large);
                 background: var(--block-primary-color);
                 position: absolute;
                 top: 50%;
@@ -77,31 +72,25 @@
                 transform: translateY(-50%);
                 padding: $padding-large;
                 max-width: 50%;
-                display: flex;
-                flex-direction: column;
-                gap: $gap-extra-large;
-    
-                >*{
-                    display: flex;
-                    flex-direction: column;
-                    gap: $gap-medium;
+
+                > * {
+                    @include flex-column($gap-medium);
                 }
-    
-                >button{
+
+                > button {
                     text-transform: uppercase;
                 }
             }
         }
-    
-        >.browse_the_range{
+
+        > .browse_the_range {
+            @include flex-column($gap-extra-large);
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: $gap-extra-large;
-    
-            >*:last-child{
+
+            > *:last-child {
                 position: relative;
-                >.type{
+
+                > .type {
                     justify-content: space-around;
                     display: flex;
                     gap: $gap-medium;
@@ -109,303 +98,280 @@
                     scrollbar-width: none;
                     position: relative;
                     overflow: scroll;
-        
-                    >.card{
-                        display: flex;
-                        flex-direction: column;
+
+                    > .card {
+                        @include flex-column($gap-large);
                         scroll-snap-align: center;
-                        gap: $gap-large;
                         width: 100%;
                         min-width: $min-width-standart;
-                        max-width: calc($max-width-standart + 100px);
-                        >.image{
-                            border-radius: 10px; //TODO
+                        max-width: $range-card-max-width;
+
+                        > .image {
+                            border-radius: $radius-image;
                         }
                     }
                 }
             }
         }
-    
-    
-        >.products{
-            display: flex;
-            flex-direction: column;
-            gap: $gap-large;
-    
-            >h2{
+
+        > .products {
+            @include flex-column($gap-large);
+
+            > h2 {
                 text-align: center;
             }
-            >*{
-                display: flex;
-                flex-direction: column;
-                gap: $gap-large;
-                .all_products{
+
+            > * {
+                @include flex-column($gap-large);
+
+                .all_products {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax($min-width-standart, 1fr));
                     gap: $gap-large;
-    
-                    >.card{
+
+                    > .card {
                         position: relative;
                         min-width: $min-width-standart;
-    
-                        >.standart{
+
+                        > .standart {
                             background: var(--block-secondary-color);
-    
-                            >.image{
+
+                            > .image {
                                 width: 100%;
                                 aspect-ratio: 1/1;
                             }
-    
-                            >.info{
+
+                            > .info {
+                                @include flex-column($gap-small);
                                 padding: $padding-small;
-                                display: flex;
-                                flex-direction: column;
-                                gap: $gap-small;
                             }
-    
-                            >.wildcard{
-                                >.old_price{
+
+                            > .wildcard {
+                                > .old_price {
                                     position: absolute;
-                                    bottom: 15px; //TODO
-                                    right: 15px; //TODO
+                                    bottom: $inset-small;
+                                    right: $inset-small;
                                     height: 2em;
                                     align-content: center;
                                     text-decoration: line-through;
                                     color: var(--text-color-secondary);
-                                    text-decoration-thickness: 2px;
+                                    text-decoration-thickness: $border-width;
                                 }
-    
-                                >.banners{
+
+                                > .banners {
                                     justify-content: space-between;
                                     color: var(--text-color-for-button);
                                     display: flex;
                                     flex-direction: row-reverse;
                                     position: absolute;
-                                    width: 90%; //TODO
-                                    top: 20px; //TODO
-                                    left: 5%; //TODO
-    
-                                    >span{
+                                    width: 100% - $banner-side-gap * 2;
+                                    top: $inset-medium;
+                                    left: $banner-side-gap;
+
+                                    > span {
                                         margin: auto 0;
                                         padding: $padding-small;
                                         border-radius: 100%;
                                         display: inline-flex;
                                         aspect-ratio: 1/1;
                                         align-items: center;
-    
-                                        &.discount{
+
+                                        &.discount {
                                             background: var(--discount-color);
                                         }
-    
-                                        &.new{
+
+                                        &.new {
                                             background: var(--new-color);
                                         }
                                     }
                                 }
                             }
                         }
-    
-                        >.hover{
-                            gap: $gap-medium;
+
+                        > .hover {
+                            @include flex-column($gap-medium);
+                            @include fade-hidden;
                             align-items: center;
                             justify-content: center;
                             width: 100%;
                             height: 100%;
-                            display: flex;
-                            flex-direction: column;
                             background: var(--shadow-color);
                             position: absolute;
                             top: 0;
-                            opacity: 0;
-                            visibility: hidden;
-                            transition: opacity 0.5s ease-in-out, visibility 0.5s;
-    
-                            >button.secondary{
+
+                            > button.secondary {
                                 color: var(--text-color-for-button);
                             }
-    
-                            >.secondary_buttons{
+
+                            > .secondary_buttons {
                                 --icon-size: 1em;
                                 display: flex;
                                 gap: $gap-medium;
-    
-                                >button{
+
+                                > button {
                                     gap: $gap-small;
                                     display: flex;
                                     place-items: center;
                                     color: var(--text-color-for-button);
-    
-                                        &:hover{
-                                            color: var(--primaty-color);
-                                        }
+
+                                    &:hover {
+                                        color: var(--primary-color);
+                                    }
                                 }
                             }
                         }
-    
-                        &:hover >.hover{
-                            opacity: 1;
-                            visibility: visible;
+
+                        &:hover > .hover {
+                            @include fade-visible;
                         }
                     }
                 }
-    
-                >.show_more{
+
+                > .show_more {
                     display: flex;
                     justify-content: center;
                 }
             }
         }
-    
-    
-        >.exemples{
+
+        > .exemples {
+            @include full-bleed;
             display: grid;
             grid-template-columns: 1fr 2fr;
-            padding: $padding-large 6.25%;
+            padding: $padding-large $page-gutter;
             gap: $gap-large;
             background: var(--block-primary-color);
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
             overflow: hidden;
-    
-            >.info{
-                display: flex;
-                flex-direction: column;
+
+            > .info {
+                @include flex-column($gap-medium);
                 margin: auto;
-                gap: $gap-medium;
             }
-    
-            .carousel{
+
+            .carousel {
                 position: relative;
-    
-    
-    
-                >.all_carousel{
+
+                > .all_carousel {
                     position: relative;
-                    clip-path: inset(-1000px -1000px -1000px 0px); 
-                    >.all_cards{
-                        transition: transform 0.5s ease-in-out;
+                    clip-path: inset(-1000px -1000px -1000px 0px);
+
+                    > .all_cards {
                         display: flex;
                         gap: $gap-medium;
-    
-                        >.card_carousel{
+                        transition: transform $duration-slow $ease;
+
+                        > .card_carousel {
                             position: relative;
-                            min-width: 70%; //TODO
-                            transform: scale(0.7,0.7);
+                            min-width: $carousel-card-width;
+                            transform: scale($carousel-card-scale, $carousel-card-scale);
                             align-self: flex-start;
-                            transform-origin: top left; 
-                            transition: transform 0.5s ease-in-out;
-    
-                            >.image{
-                                max-width: calc($max-width-standart * 2);
+                            transform-origin: top left;
+                            transition: transform $duration-slow $ease;
+
+                            > .image {
+                                max-width: $carousel-image-max-width;
                             }
-    
-                            >.info_block{
-                                opacity: 0;
-                                visibility: hidden;
+
+                            > .info_block {
+                                @include flex-column($gap-small);
+                                @include fade-hidden;
                                 position: absolute;
                                 background: var(--block-info-card);
                                 padding: $padding-medium;
-                                display: flex;
-                                flex-direction: column;
-                                gap: $gap-small;
-                                bottom: 20px; //TODO
-                                left: 20px; //TODO
-                                transition: opacity 0.5s ease-in-out, visibility 0.5s;
-                                >*:first-child{
+                                bottom: $inset-medium;
+                                left: $inset-medium;
+
+                                > *:first-child {
                                     display: flex;
                                     gap: $gap-small;
-                                    >*:first-child{
+
+                                    > *:first-child {
                                         display: contents;
-                                        &::after{
+
+                                        &::after {
                                             content: "";
                                             display: inline-block;
-                                            width: 25px;
+                                            width: $carousel-line-length;
                                             height: 1px;
                                             background-color: var(--text-color-secondary);
                                             margin: auto;
                                         }
                                     }
                                 }
-                                >button{
+
+                                > button {
                                     position: absolute;
                                     bottom: 0;
                                     right: 0;
-                                    transform: translate(100%,0);
+                                    transform: translate(100%, 0);
                                     padding: $padding-small;
-                                    background: var(--primaty-color);
+                                    background: var(--primary-color);
                                     color: var(--text-color-for-button);
-    
-                                    >app-icon{
+
+                                    > app-icon {
                                         transform: translateX(0);
-                                        transition: transform 0.2s ease-in-out;
+                                        transition: transform $duration-fast $ease;
                                     }
-    
-    
-                                    &:hover{
-                                        >app-icon{
-                                            transform: translateX(5px);
-                                        }
+
+                                    &:hover > app-icon {
+                                        transform: translateX($arrow-nudge);
                                     }
                                 }
                             }
                         }
-                        >.active{
-                            transform: scale(1,1);
-    
-                            >.info_block{
-                                opacity: 1;
-                                visibility: visible;
+
+                        > .active {
+                            transform: scale(1, 1);
+
+                            > .info_block {
+                                @include fade-visible;
                             }
                         }
                     }
-                    >.carousel_indicators{
+
+                    > .carousel_indicators {
                         position: absolute;
                         bottom: 0;
-                        left: calc(70% + 25px); //TODO
+                        left: calc($carousel-card-width + $carousel-dots-offset);
                         display: flex;
                         gap: $gap-small;
-                        >.dot{
+
+                        > .dot {
                             cursor: pointer;
                             border: none;
                             background: transparent;
                             margin: 0;
                             padding: 0;
-                            >.dot_render{
+
+                            > .dot_render {
                                 display: inline-flex;
                                 align-items: center;
                                 justify-content: center;
-                                width: 24px; //TODO
-                                height: 24px; //TODO
-                                border: 2px solid transparent;
+                                width: $dot-size;
+                                height: $dot-size;
+                                border: $border-width solid transparent;
                                 border-radius: 50%;
-                                transition: border 0.5s ease-in-out;
-    
-                                &::before{
+                                transition: border $duration-slow $ease;
+
+                                &::before {
                                     content: "";
-                                    width: 8px; //TODO
-                                    height: 8px; //TODO
+                                    width: $dot-core-size;
+                                    height: $dot-core-size;
                                     background-color: var(--text-color-secondary);
                                     border-radius: 50%;
-                                    transition:  background-color 0.5s ease-in-out;
+                                    transition: background-color $duration-slow $ease;
                                 }
-    
-                                &:hover{
-                                    &::before{
-                                        background-color: var(--primaty-color);
-                                    }
+
+                                &:hover::before {
+                                    background-color: var(--primary-color);
                                 }
                             }
-    
-                            &.active{
-                                >.dot_render{
-                                    border: 2px solid var(--primaty-color);
-                                    &::before{
-                                        background-color: var(--primaty-color);
-                                    }
+
+                            &.active > .dot_render {
+                                border: $border-width solid var(--primary-color);
+
+                                &::before {
+                                    background-color: var(--primary-color);
                                 }
                             }
                         }
@@ -413,152 +379,132 @@
                 }
             }
         }
-    
-        >.share_your_setup{
+
+        > .share_your_setup {
+            @include flex-column($gap-large);
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: $gap-large;
-    
-            >.all_image{
+
+            > .all_image {
                 display: flex;
                 flex-wrap: wrap;
                 gap: $gap-medium;
-    
-                >.image{
+
+                > .image {
                     flex: 1 1 auto;
-                    height: 300px;
-                    max-height: 300px;
+                    height: $gallery-image-height;
+                    max-height: $gallery-image-height;
                     overflow: auto;
-    
-                    >img{
+
+                    > img {
                         object-fit: contain;
                     }
                 }
             }
         }
-    
-        >*:last-child{
+
+        > *:last-child {
             padding-bottom: $padding-large;
         }
     }
-    
-    footer{ 
+
+    footer {
         display: flex;
-        padding: $padding-large 6.25%;
-        box-shadow: 0 -10px 15px -10px var(--shadow-color);
+        padding: $padding-large $page-gutter;
+        box-shadow: $shadow-footer;
         flex-direction: column;
-        >*:first-child{
+
+        > *:first-child {
             display: flex;
             padding: 0 0 $padding-medium 0;
             gap: $gap-medium;
             justify-content: space-between;
-    
-    
-            >.info{
+
+            > .info {
+                @include flex-column($gap-extra-large);
                 max-width: $max-width-standart;
-                gap: $gap-extra-large;
-                display: flex;
-                flex-direction: column;
             }
-    
-            >.links{
-                gap: $gap-extra-large;
-                display: flex;
-                flex-direction: column;
-                >nav{
-                    >ul{
-                        display: flex;
-                        list-style-type: none;
-                        margin: 0;
-                        padding: 0;
-                        flex-direction: column;
-                        gap: $gap-large;
-                    }
+
+            > .links {
+                @include flex-column($gap-extra-large);
+
+                > nav > ul {
+                    @include list-reset;
+                    @include flex-column($gap-large);
                 }
             }
-    
-            >.help{
-                gap: $gap-extra-large;
-                display: flex;
-                flex-direction: column;
-                >ul{
-                    display: flex;
-                    list-style-type: none;
-                    margin: 0;
-                    padding: 0;
-                    flex-direction: column;
-                    gap: $gap-large;
+
+            > .help {
+                @include flex-column($gap-extra-large);
+
+                > ul {
+                    @include list-reset;
+                    @include flex-column($gap-large);
                 }
             }
-    
-            >.newsletter{
-                display: flex;
-                flex-direction: column;
-                gap: $gap-extra-large;
-                >form{
+
+            > .newsletter {
+                @include flex-column($gap-extra-large);
+
+                > form {
                     position: relative;
                     display: flex;
                     gap: $gap-small;
-    
-                    >label{
+
+                    > label {
                         position: absolute;
                         pointer-events: none;
                         left: 0;
                         bottom: 0;
-                        transition: 0.2s ease-in-out all;
+                        transition: $duration-fast $ease all;
                     }
-    
-                    >input{
+
+                    > input {
                         width: 100%;
-                        max-width: calc($max-width-standart - 100px);
+                        max-width: $newsletter-input-max-width;
                         padding: 0;
-                        border: none;
-                        border-bottom: 2px solid;
-                        border-color: var(--text-color);
-                        transition: border-color 0.2s ease-in-out;
-    
-                        &:focus{
+                        @include underline-field;
+
+                        &:focus {
                             outline: none;
-                            border-color: var(--primaty-color);
+                            border-color: var(--primary-color);
                         }
                     }
-    
-                    & >input:focus ~ label,
-                    & >input:not(:placeholder-shown) ~ label{
+
+                    & > input:focus ~ label,
+                    & > input:not(:placeholder-shown) ~ label {
                         bottom: 100%;
                     }
-    
-                    >button{
+
+                    > button {
                         padding: 0;
-                        border: none;
                         cursor: pointer;
                         background: transparent;
-                        border-bottom: 2px solid;
-                        border-color: var(--text-color);
-                        transition: border-color 0.2s ease-in-out;
-                        >p{
+                        @include underline-field;
+
+                        > p {
                             color: var(--text-color);
                             padding: 0;
-                            transition: color 0.2s ease-in-out;
+                            transition: color $duration-fast $ease;
                         }
-                        &:hover{
-                            border-color: var(--primaty-color);
-                            >p{
-                                color: var(--primaty-color);
+
+                        &:hover {
+                            border-color: var(--primary-color);
+
+                            > p {
+                                color: var(--primary-color);
                             }
                         }
                     }
                 }
             }
         }
-        >*:last-child{
+
+        > *:last-child {
             border-top: 1px solid var(--block-secondary-color);
             padding: $padding-medium 0 0 0;
         }
     }
 }
-
 
 @layer mobile {
     // @include styles;

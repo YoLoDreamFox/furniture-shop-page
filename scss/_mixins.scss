@@ -1,0 +1,55 @@
+@use "./variables" as *;
+
+@mixin flex-column($gap) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin list-reset {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+@mixin fade-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $duration-slow $ease, visibility $duration-slow;
+}
+
+@mixin fade-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+@mixin underline-field {
+    border: none;
+    border-bottom: $border-width solid;
+    border-color: var(--text-color);
+    transition: border-color $duration-fast $ease;
+}
+
+@mixin button-base {
+    cursor: pointer;
+    padding: $button-padding;
+    border-radius: 0;
+    border: 0;
+    text-transform: capitalize;
+    width: 100%;
+    max-width: $button-max-width;
+
+    p {
+        color: inherit;
+        font-weight: 700;
+    }
+}
