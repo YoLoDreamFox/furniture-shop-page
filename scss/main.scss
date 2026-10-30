@@ -270,10 +270,12 @@
                             align-self: flex-start;
                             transform-origin: top left;
                             transition: transform $duration-slow $ease;
+                            max-height: $carousel-card-max-height;
 
                             > .image {
                                 max-width: $carousel-image-max-width;
                                 height: 100%;
+                                max-height: $carousel-card-max-height;
                             }
 
                             > .info_block {

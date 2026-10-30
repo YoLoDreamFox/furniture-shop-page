@@ -14,7 +14,7 @@
             }
 
             >.header_navigation>ul{
-                gap: 20px; //TODO
+                gap: $gap-medium;
             }
 
             >.functional_buttons{
@@ -27,15 +27,15 @@
             >.ad_creative{
                 display: flex;
                 flex-direction: column;
-                gap: 10px; //TODO
+                gap: $gap-small;
 
                 >.card{
-                    gap: 20px; //TODO
+                    gap: $gap-medium;
                     position: relative;
                     top: unset;
                     right: unset;
                     transform: unset;
-                    padding: 20px; //TODO
+                    padding: $padding-small;
                     align-items: center;
                     text-align: center;
                     max-width: unset;
@@ -56,10 +56,10 @@
                 .carousel>.all_carousel{
                     display: flex;
                     flex-direction: column;
-                    gap: 10px; //TODO
+                    gap: $gap-small;
 
                     >.all_cards>.card_carousel{
-                        min-width: 90%; //TODO
+                        min-width: $carousel-card-width-mobile;
                     }
 
                     >.carousel_indicators{
@@ -108,7 +108,7 @@
                 }
 
                 >.links>.footer_navigation>ul{
-                    gap: 15px; //TODO
+                    gap: $gap-medium;
                 }
                 >.newsletter>form>input{
                     max-width: unset;

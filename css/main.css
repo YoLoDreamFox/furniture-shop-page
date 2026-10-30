@@ -625,10 +625,12 @@ body, html {
     transition: -webkit-transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+    max-height: 865px;
   }
   main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .image {
     max-width: 600px;
     height: 100%;
+    max-height: 865px;
   }
   main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block {
     display: -webkit-box;
@@ -966,7 +968,7 @@ body, html {
       right: unset;
       -webkit-transform: unset;
               transform: unset;
-      padding: 20px;
+      padding: 10px;
       -webkit-box-align: center;
           -ms-flex-align: center;
               align-items: center;
@@ -1044,7 +1046,7 @@ body, html {
       max-width: unset;
     }
     footer > *:first-child > .links > .footer_navigation > ul {
-      gap: 15px;
+      gap: 20px;
     }
     footer > *:first-child > .newsletter > form > input {
       max-width: unset;

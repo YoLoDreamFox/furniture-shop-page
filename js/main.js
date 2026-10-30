@@ -44,7 +44,6 @@ function renderAssortmentTypes() {
     document.getElementById('assortmentTypes').replaceChildren(complete);
 }
 
-// TODO pagination
 function renderProductCards() {
     const complete = document.createDocumentFragment();
         for (const card of cards) {
