@@ -467,8 +467,8 @@ body, html {
   }
   main > .products > * .all_products > .card > .standart > .wildcard > .old_price {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
+    bottom: 10px;
+    right: 10px;
     height: 2em;
     -ms-flex-line-pack: center;
         align-content: center;
