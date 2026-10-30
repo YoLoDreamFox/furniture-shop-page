@@ -1,0 +1,119 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+@mixin mobile_style {
+    @media (max-width: 960px){
+        body > header{
+            >.logo>a{
+                >.icon{
+                    width: 2em;
+                }
+                >.name{
+                    display: none;
+                }
+            }
+
+            >.header_navigation>ul{
+                gap: 20px; //TODO
+            }
+
+            >.functional_buttons{
+                display: none;
+            }
+
+        }
+
+        main{
+            >.ad_creative{
+                display: flex;
+                flex-direction: column;
+                gap: 10px; //TODO
+
+                >.card{
+                    gap: 20px; //TODO
+                    position: relative;
+                    top: unset;
+                    right: unset;
+                    transform: unset;
+                    padding: 20px; //TODO
+                    align-items: center;
+                    text-align: center;
+                    max-width: unset;
+                }
+            }
+
+
+
+            >.exemples{
+                grid-template-columns: unset;
+                grid-template-rows: auto;
+
+                >.info{
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .carousel>.all_carousel{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px; //TODO
+
+                    >.all_cards>.card_carousel{
+                        min-width: 90%; //TODO
+                    }
+
+                    >.carousel_indicators{
+                        position: relative;
+                        bottom: unset;
+                        left: unset;
+                        justify-content: center;
+                    }
+
+                }
+            }
+
+            >.share_your_setup{
+                >.all_image>.image{
+                    height: 140px;
+                    max-height: 140px;
+                }
+            }
+        }
+
+        footer{
+            text-align: center;
+            >*:first-child{
+                display: grid;
+                grid-template-rows: auto; 
+                grid-template-columns: 1fr;
+                >.info,>.links,>.help,>.newsletter{
+                    @include flex-column($gap-medium);  
+                }
+
+                >*:nth-child(2),
+                >*:nth-child(3) {
+                    width: max-content;
+                    grid-row: 2;
+                    grid-column: 1;
+                }
+                >*:nth-child(2) {
+                    justify-self: start;
+                }
+                >*:nth-child(3) {
+                    justify-self: end;
+                }
+
+                >.info{
+                    max-width: unset;
+                }
+
+                >.links>.footer_navigation>ul{
+                    gap: 15px; //TODO
+                }
+                >.newsletter>form>input{
+                    max-width: unset;
+                }
+            }
+        }
+    }
+}

@@ -17,6 +17,7 @@ async function copyTextToClipboard(text) {
 export function templateProductCard(name,description,price,src,alt_src,timeItem,old_price,discount,src_item) {
     const card = document.createElement('div');
     card.classList.add('card');
+    card.setAttribute('tabindex','0');
 
     card.innerHTML=`
         <div class="standart">

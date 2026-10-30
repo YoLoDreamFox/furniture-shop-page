@@ -1,6 +1,7 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 @use "./global.scss" as global;
+@use "./mobile.scss" as mobile;
 @use "./font.scss" as font;
 
 @layer import, main, mobile;
@@ -221,7 +222,8 @@
                             }
                         }
 
-                        &:hover > .hover {
+                        &:hover > .hover,
+                        &:focus-within > .hover {
                             @include fade-visible;
                         }
                     }
@@ -262,6 +264,7 @@
 
                         > .card_carousel {
                             position: relative;
+                            aspect-ratio: 1/1.4;
                             min-width: $carousel-card-width;
                             transform: scale($carousel-card-scale, $carousel-card-scale);
                             align-self: flex-start;
@@ -270,6 +273,7 @@
 
                             > .image {
                                 max-width: $carousel-image-max-width;
+                                height: 100%;
                             }
 
                             > .info_block {
@@ -507,5 +511,5 @@
 }
 
 @layer mobile {
-    // @include styles;
+    @include mobile.mobile_style;
 }

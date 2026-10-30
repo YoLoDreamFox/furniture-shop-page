@@ -242,7 +242,11 @@ body, html {
   }
   .toast {
     visibility: hidden;
-    min-width: 250px;
+    min-width: 280px;
+    max-width: calc(100% - 40px);
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -257,8 +261,12 @@ body, html {
     -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     opacity: 0;
-    -webkit-transition: opacity 0.4s ease, visibility 0.4s;
-    transition: opacity 0.4s ease, visibility 0.4s;
+    -webkit-transition: opacity 0.4s ease, visibility 0.4s, -webkit-transform 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0.4s, -webkit-transform 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0.4s, transform 0.4s ease;
+    transition: opacity 0.4s ease, visibility 0.4s, transform 0.4s ease, -webkit-transform 0.4s ease;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   .toast.show {
     visibility: visible;
@@ -549,7 +557,7 @@ body, html {
   main > .products > * .all_products > .card > .hover > .secondary_buttons > button:hover {
     color: var(--primary-color);
   }
-  main > .products > * .all_products > .card:hover > .hover {
+  main > .products > * .all_products > .card:hover > .hover, main > .products > * .all_products > .card:focus-within > .hover {
     opacity: 1;
     visibility: visible;
   }
@@ -605,6 +613,7 @@ body, html {
   }
   main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel {
     position: relative;
+    aspect-ratio: 1/1.4;
     min-width: 70%;
     -webkit-transform: scale(0.7, 0.7);
             transform: scale(0.7, 0.7);
@@ -619,6 +628,7 @@ body, html {
   }
   main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .image {
     max-width: 600px;
+    height: 100%;
   }
   main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel > .info_block {
     display: -webkit-box;
@@ -925,4 +935,119 @@ body, html {
     padding: 30px 0 0 0;
   }
 }
-@layer mobile {}
+@layer mobile {
+  @media (max-width: 960px) {
+    body > header > .logo > a > .icon {
+      width: 2em;
+    }
+    body > header > .logo > a > .name {
+      display: none;
+    }
+    body > header > .header_navigation > ul {
+      gap: 20px;
+    }
+    body > header > .functional_buttons {
+      display: none;
+    }
+    main > .ad_creative {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      gap: 10px;
+    }
+    main > .ad_creative > .card {
+      gap: 20px;
+      position: relative;
+      top: unset;
+      right: unset;
+      -webkit-transform: unset;
+              transform: unset;
+      padding: 20px;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      text-align: center;
+      max-width: unset;
+    }
+    main > .exemples {
+      grid-template-columns: unset;
+      grid-template-rows: auto;
+    }
+    main > .exemples > .info {
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      text-align: center;
+    }
+    main > .exemples .carousel > .all_carousel {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      gap: 10px;
+    }
+    main > .exemples .carousel > .all_carousel > .all_cards > .card_carousel {
+      min-width: 90%;
+    }
+    main > .exemples .carousel > .all_carousel > .carousel_indicators {
+      position: relative;
+      bottom: unset;
+      left: unset;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+    }
+    main > .share_your_setup > .all_image > .image {
+      height: 140px;
+      max-height: 140px;
+    }
+    footer {
+      text-align: center;
+    }
+    footer > *:first-child {
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: 1fr;
+    }
+    footer > *:first-child > .info, footer > *:first-child > .links, footer > *:first-child > .help, footer > *:first-child > .newsletter {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      gap: 20px;
+    }
+    footer > *:first-child > *:nth-child(2),
+    footer > *:first-child > *:nth-child(3) {
+      width: -webkit-max-content;
+      width: -moz-max-content;
+      width: max-content;
+      grid-row: 2;
+      grid-column: 1;
+    }
+    footer > *:first-child > *:nth-child(2) {
+      justify-self: start;
+    }
+    footer > *:first-child > *:nth-child(3) {
+      justify-self: end;
+    }
+    footer > *:first-child > .info {
+      max-width: unset;
+    }
+    footer > *:first-child > .links > .footer_navigation > ul {
+      gap: 15px;
+    }
+    footer > *:first-child > .newsletter > form > input {
+      max-width: unset;
+    }
+  }
+}

@@ -190,11 +190,13 @@ function scrollForAllCards() {
 
 function showToast(message) {
   const toast = document.getElementById('toast');
-  toast.textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => {
+  if (!toast.classList.contains('show')) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
     toast.classList.remove('show');
-  }, 3000);
+    }, 3000);
+  }
 }
 
 function demo() {
